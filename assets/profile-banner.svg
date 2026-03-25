@@ -1,0 +1,86 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Hi-Jiajun profile banner</title>
+  <desc id="desc">A stylized banner for Hi-Jiajun featuring AI agents, automation systems, and developer tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="24" x2="1196" y2="296" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111F"/>
+      <stop offset="0.55" stop-color="#0B2942"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(245 88) rotate(33.155) scale(412.766 191.88)">
+      <stop stop-color="#38BDF8" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1028 286) rotate(-151.134) scale(412.332 203.123)">
+      <stop stop-color="#2DD4BF" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" stroke="white" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect x="8" y="8" width="1264" height="304" rx="28" fill="url(#bg)"/>
+  <rect x="8" y="8" width="1264" height="304" rx="28" fill="url(#glowA)"/>
+  <rect x="8" y="8" width="1264" height="304" rx="28" fill="url(#glowB)"/>
+  <rect x="8" y="8" width="1264" height="304" rx="28" fill="url(#grid)"/>
+  <rect x="8.5" y="8.5" width="1263" height="303" rx="27.5" stroke="white" stroke-opacity="0.14"/>
+
+  <circle cx="1110" cy="80" r="72" fill="#38BDF8" fill-opacity="0.08"/>
+  <circle cx="1178" cy="228" r="102" fill="#2DD4BF" fill-opacity="0.08"/>
+
+  <text x="72" y="82" fill="#7DD3FC" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3.5">
+    HI-JIAJUN / INDIE DEVELOPER
+  </text>
+  <text x="72" y="145" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">
+    Practical systems
+  </text>
+  <text x="72" y="195" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">
+    for humans and agents
+  </text>
+  <text x="72" y="236" fill="#CFE8F7" font-family="Segoe UI, Arial, sans-serif" font-size="18">
+    AI agents, automation workflows, memory, browser tooling, and developer systems.
+  </text>
+
+  <g transform="translate(744 54)">
+    <rect width="202" height="78" rx="18" fill="white" fill-opacity="0.08"/>
+    <rect x="0.75" y="0.75" width="200.5" height="76.5" rx="17.25" stroke="white" stroke-opacity="0.14"/>
+    <rect x="18" y="18" width="42" height="7" rx="3.5" fill="#38BDF8"/>
+    <text x="18" y="47" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="700">AI Agents</text>
+    <text x="18" y="64" fill="#CFE8F7" font-family="Segoe UI, Arial, sans-serif" font-size="12">orchestration / memory / tooling</text>
+  </g>
+
+  <g transform="translate(970 54)">
+    <rect width="202" height="78" rx="18" fill="white" fill-opacity="0.08"/>
+    <rect x="0.75" y="0.75" width="200.5" height="76.5" rx="17.25" stroke="white" stroke-opacity="0.14"/>
+    <rect x="18" y="18" width="42" height="7" rx="3.5" fill="#2DD4BF"/>
+    <text x="18" y="47" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="700">Automation</text>
+    <text x="18" y="64" fill="#CFE8F7" font-family="Segoe UI, Arial, sans-serif" font-size="12">content / infra / workflow glue</text>
+  </g>
+
+  <g transform="translate(798 154)">
+    <rect width="232" height="92" rx="20" fill="white" fill-opacity="0.08"/>
+    <rect x="0.75" y="0.75" width="230.5" height="90.5" rx="19.25" stroke="white" stroke-opacity="0.14"/>
+    <rect x="20" y="20" width="50" height="7" rx="3.5" fill="#93C5FD"/>
+    <text x="20" y="54" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Dev Tools</text>
+    <text x="20" y="73" fill="#CFE8F7" font-family="Segoe UI, Arial, sans-serif" font-size="12">Git-native workflows / browser + MCP / solo builder systems</text>
+  </g>
+
+  <g transform="translate(72 264)">
+    <rect width="108" height="28" rx="14" fill="#0F2740"/>
+    <rect x="0.75" y="0.75" width="106.5" height="26.5" rx="13.25" stroke="#38BDF8" stroke-opacity="0.38"/>
+    <text x="21" y="19" fill="#E0F2FE" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">OPENCLAW</text>
+
+    <rect x="120" width="72" height="28" rx="14" fill="#0F2740"/>
+    <rect x="120.75" y="0.75" width="70.5" height="26.5" rx="13.25" stroke="#38BDF8" stroke-opacity="0.38"/>
+    <text x="144" y="19" fill="#E0F2FE" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">MCP</text>
+
+    <rect x="204" width="112" height="28" rx="14" fill="#0F2740"/>
+    <rect x="204.75" y="0.75" width="110.5" height="26.5" rx="13.25" stroke="#38BDF8" stroke-opacity="0.38"/>
+    <text x="225" y="19" fill="#E0F2FE" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">AUTOMATION</text>
+
+    <rect x="328" width="108" height="28" rx="14" fill="#0F2740"/>
+    <rect x="328.75" y="0.75" width="106.5" height="26.5" rx="13.25" stroke="#38BDF8" stroke-opacity="0.38"/>
+    <text x="351" y="19" fill="#E0F2FE" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">DEV TOOLS</text>
+  </g>
+</svg>

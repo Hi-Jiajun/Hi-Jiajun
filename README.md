@@ -1,3 +1,10 @@
+<!--
+This file is the source template for README.md.
+Do not edit README.md directly; update this template or profile-data.yml instead.
+-->
+
+<!-- AUTO-GENERATED FILE: edit README.template.md and profile-data.yml -->
+
 <div align="center">
   <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
 
@@ -35,10 +42,10 @@ I am mostly interested in:
 这些仓库更接近我自己主导或直接维护的内容。  
 These repositories are the closest to my own work or direct maintenance.
 
-| Project | Description / 说明 |
-| --- | --- |
-| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | Automated generation pipeline for China mainland direct-connect domain rules |
-| [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | Standalone repository for a VPP PPPoE client plugin extracted from my branch work |
+| Project | Description / 说明 | Activity |
+| --- | --- | --- |
+| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程 | Python · ⭐ 1 · updated 2026-03-27 |
+| [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库 | C · ⭐ 1 · updated 2026-03-26 |
 
 ## 🤝 Forks, References, Contributions / Fork、参考与贡献
 
@@ -46,12 +53,25 @@ These repositories are the closest to my own work or direct maintenance.
 我不想把它们写成“完全由我原创开发的项目”。  
 These repositories are here because I use them, study them, adapt them, or have contributed something around them.
 
-| Project | Why it is here / 为什么会放在这里 |
+| Project | Why it is here / 为什么会放在这里 | Activity |
+| --- | --- | --- |
+| [memory-lancedb-pro](https://github.com/Hi-Jiajun/memory-lancedb-pro) | Fork for learning, experimenting, and local adaptation around memory workflows<br/>用于记忆工作流学习、实验和本地适配的 fork | TypeScript · ⭐ 0 · updated 2026-03-25 |
+| [pua](https://github.com/Hi-Jiajun/pua) | Fork for studying and adapting agent execution patterns<br/>用于研究和适配 Agent 执行模式的 fork | TypeScript · ⭐ 0 · updated 2026-03-22 |
+| [OpenMAIC](https://github.com/Hi-Jiajun/OpenMAIC) | Fork used to explore multi-agent classroom workflows<br/>用于探索多 Agent 课堂工作流的 fork | TypeScript · ⭐ 0 · updated 2026-03-27 |
+| [openclaw](https://github.com/Hi-Jiajun/openclaw) | Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目 | TypeScript · ⭐ 0 · updated 2026-03-25 |
+
+## 📈 Recently Active / 最近活跃
+
+这部分会根据仓库最近的推送时间自动刷新。  
+This section refreshes automatically based on recent repository activity.
+
+| Repository | Status |
 | --- | --- |
-| [memory-lancedb-pro](https://github.com/Hi-Jiajun/memory-lancedb-pro) | Fork for learning, experimenting, and local adaptation around memory workflows |
-| [pua](https://github.com/Hi-Jiajun/pua) | Fork for studying and adapting agent execution patterns |
-| [OpenMAIC](https://github.com/Hi-Jiajun/OpenMAIC) | Fork used to explore multi-agent classroom workflows |
-| [openclaw](https://github.com/Hi-Jiajun/openclaw) | Upstream project I use and study in AI workflow setups |
+| [OpenMAIC](https://github.com/Hi-Jiajun/OpenMAIC) | 🍴 Fork · Fork used to explore multi-agent classroom workflows<br/>用于探索多 Agent 课堂工作流的 fork<br/>updated 2026-03-27 |
+| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | 🛠️ Original · Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程<br/>updated 2026-03-27 |
+| [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | 🛠️ Original · Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库<br/>updated 2026-03-26 |
+| [openclaw](https://github.com/Hi-Jiajun/openclaw) | 🍴 Fork · Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目<br/>updated 2026-03-25 |
+| [memory-lancedb-pro](https://github.com/Hi-Jiajun/memory-lancedb-pro) | 🍴 Fork · Fork for learning, experimenting, and local adaptation around memory workflows<br/>用于记忆工作流学习、实验和本地适配的 fork<br/>updated 2026-03-25 |
 
 ## 🧭 How I Work / 做事方式
 
@@ -69,7 +89,7 @@ These repositories are here because I use them, study them, adapt them, or have 
   <img src="https://img.shields.io/badge/GitHub%20Actions-Automation-334155?style=flat-square" alt="GitHub Actions" />
   <img src="https://img.shields.io/badge/OpenClaw-Workflow%20Experiments-0f766e?style=flat-square" alt="OpenClaw" />
   <img src="https://img.shields.io/badge/MCP-Tool%20Integration-0284c7?style=flat-square" alt="MCP" />
-  <img src="https://img.shields.io/badge/Browser%20Automation-Experiments-0ea5e9?style=flat-square" alt="Browser automation" />
+  <img src="https://img.shields.io/badge/Browser%20Automation-Experiments-0ea5e9?style=flat-square" alt="Browser Automation" />
   <img src="https://img.shields.io/badge/WSL-Windows%20Workflows-4D4D4D?style=flat-square" alt="WSL" />
 </p>
 
@@ -89,5 +109,6 @@ These repositories are here because I use them, study them, adapt them, or have 
 ---
 
 <p align="center">
+  ✨ 先做对自己有用的东西，也希望它们对别人也有帮助。<br/>
   ✨ Building things that are useful to me first, and hopefully useful to others too.
 </p>

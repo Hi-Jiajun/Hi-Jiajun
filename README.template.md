@@ -6,7 +6,7 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 <!-- AUTO-GENERATED FILE: edit README.template.md and profile-data.yml -->
 
 <div align="center">
-  <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
+  <img src="{{ HEADER_IMAGE_URL }}" alt="Hi-Jiajun profile banner" />
 
   <h1>{{ HEADER_TITLE }}</h1>
   <p>{{ HEADER_ROLE }}</p>
@@ -73,9 +73,13 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 {{ SNAPSHOT_INTRO_ZH }}  
 {{ SNAPSHOT_INTRO_EN }}
 
-<p align="center">
-  <img src="{{ SNAPSHOT_IMAGE_URL }}" alt="Auto-generated GitHub snapshot for {{ USERNAME }}" />
-</p>
+| Metric | Value |
+| --- | --- |
+{{ SNAPSHOT_ROWS }}
+
+### 🧪 Top Languages / 常见语言
+
+{{ TOP_LANGUAGES }}
 
 ## ✨ What You Will Find Here / 这里会看到什么
 

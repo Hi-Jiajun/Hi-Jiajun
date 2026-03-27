@@ -6,6 +6,7 @@ import os
 import re
 import sys
 import hashlib
+import math
 from html import escape
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,6 +15,7 @@ from urllib import parse, request
 from collections import Counter
 
 import yaml
+from PIL import Image, ImageDraw, ImageFont
 
 
 PLACEHOLDER_PATTERN = re.compile(r"{{\s*([A-Z0-9_]+)\s*}}")
@@ -25,6 +27,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
     parser.add_argument("--snapshot-svg", default="assets/generated/profile-snapshot.svg")
+    parser.add_argument("--hero-gif", default="assets/generated/profile-hero.gif")
     return parser.parse_args()
 
 
@@ -211,104 +214,116 @@ def collect_top_languages(repos: list[dict[str, Any]], limit: int = 5) -> list[t
     return counter.most_common(limit)
 
 
-def write_snapshot_svg(
-    snapshot_path: Path,
-    username: str,
-    repos: list[dict[str, Any]],
-    config: dict[str, Any],
-) -> str:
-    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    candidates = []
+    if bold:
+        candidates.extend(
+            [
+                "C:/Windows/Fonts/segoeuib.ttf",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+                "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf",
+            ]
+        )
+    else:
+        candidates.extend(
+            [
+                "C:/Windows/Fonts/segoeui.ttf",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+                "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
+            ]
+        )
 
-    public_repo_count = len(repos)
-    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
-    original_tracked = len(config["projects"]["original"])
-    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
-    top_languages = collect_top_languages(repos, limit=5)
-    max_count = max((count for _language, count in top_languages), default=1)
+    for candidate in candidates:
+        if Path(candidate).exists():
+            try:
+                return ImageFont.truetype(candidate, size=size)
+            except OSError:
+                continue
+    return ImageFont.load_default()
 
-    cards = [
-        ("Public repos", str(public_repo_count), "#38bdf8"),
-        ("Fork repos", str(fork_repo_count), "#60a5fa"),
-        ("Original work", str(original_tracked), "#2dd4bf"),
-        ("Total stars", str(total_stars), "#f59e0b"),
+
+def write_hero_gif(hero_path: Path, username: str) -> str:
+    hero_path.parent.mkdir(parents=True, exist_ok=True)
+
+    width, height = 1280, 320
+    title_font = load_font(46, bold=True)
+    subtitle_font = load_font(22, bold=False)
+    label_font = load_font(18, bold=True)
+    pill_font = load_font(18, bold=True)
+
+    labels = [
+        ("AUTOMATION", "#38bdf8"),
+        ("AI WORKFLOWS", "#2dd4bf"),
+        ("NETWORKING", "#f59e0b"),
     ]
 
-    card_parts = []
-    for index, (label, value, accent) in enumerate(cards):
-        x = 92 + index * 272
-        card_parts.append(
-            f'''
-  <g transform="translate({x} 94)">
-    <rect width="216" height="88" rx="18" fill="rgba(255,255,255,0.05)"/>
-    <rect x="0.75" y="0.75" width="214.5" height="86.5" rx="17.25" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="20" y="18" width="42" height="6" rx="3" fill="{accent}"/>
-    <text x="20" y="48" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">{escape(value)}</text>
-    <text x="20" y="70" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">{escape(label)}</text>
-  </g>'''
-        )
+    frames = []
+    frame_count = 12
 
-    palette = ["#38bdf8", "#2dd4bf", "#f59e0b", "#a78bfa", "#f472b6"]
-    language_parts = []
-    for index, (language, count) in enumerate(top_languages):
-        y = 246 + index * 34
-        width = 1064 if max_count == 0 else round((count / max_count) * 1064)
-        color = palette[index % len(palette)]
-        language_parts.append(
-            f'''
-  <text x="108" y="{y}" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600">{escape(language)}</text>
-  <text x="1172" y="{y}" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{count} repos</text>
-  <rect x="108" y="{y + 11}" width="1064" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
-  <rect x="108" y="{y + 11}" width="{width}" height="10" rx="5" fill="{color}"/>'''
-        )
+    for frame_index in range(frame_count):
+        t = frame_index / frame_count
+        image = Image.new("RGBA", (width, height), (8, 18, 31, 255))
+        draw = ImageDraw.Draw(image, "RGBA")
 
-    if not language_parts:
-        language_parts.append(
-            '''
-  <text x="108" y="256" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">No language data available yet.</text>'''
-        )
+        for x in range(width):
+            blend = x / max(width - 1, 1)
+            r = int(8 + (20 - 8) * blend)
+            g = int(18 + (89 - 18) * blend)
+            b = int(31 + (92 - 31) * blend)
+            draw.line([(x, 0), (x, height)], fill=(r, g, b, 255))
 
-    generated_at = escape(format_date(datetime.now(timezone.utc).isoformat()))
+        for y in range(0, height, 32):
+            draw.line([(0, y), (width, y)], fill=(255, 255, 255, 10), width=1)
+        for x in range(0, width, 32):
+            draw.line([(x, 0), (x, height)], fill=(255, 255, 255, 10), width=1)
 
-    svg = f'''<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">{escape(username)} profile snapshot</title>
-  <desc id="desc">Auto-generated GitHub snapshot showing repository metrics and top languages.</desc>
-  <defs>
-    <linearGradient id="bg" x1="40" y1="24" x2="1240" y2="396" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#08121F"/>
-      <stop offset="0.55" stop-color="#0F2236"/>
-      <stop offset="1" stop-color="#154F59"/>
-    </linearGradient>
-    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 88) rotate(18) scale(340 180)">
-      <stop stop-color="#38BDF8" stop-opacity="0.20"/>
-      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 88) rotate(160) scale(360 190)">
-      <stop stop-color="#2DD4BF" stop-opacity="0.16"/>
-      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M32 0H0V32" stroke="white" stroke-opacity="0.04"/>
-    </pattern>
-  </defs>
+        sweep_x = int(-220 + (width + 440) * t)
+        draw.ellipse((sweep_x - 140, 20, sweep_x + 220, 260), fill=(56, 189, 248, 34))
+        draw.ellipse((width - 360, 40, width - 40, 280), fill=(45, 212, 191, 28))
 
-  <rect x="8" y="8" width="1264" height="404" rx="28" fill="url(#bg)"/>
-  <rect x="8" y="8" width="1264" height="404" rx="28" fill="url(#glowA)"/>
-  <rect x="8" y="8" width="1264" height="404" rx="28" fill="url(#glowB)"/>
-  <rect x="8" y="8" width="1264" height="404" rx="28" fill="url(#grid)"/>
-  <rect x="8.5" y="8.5" width="1263" height="403" rx="27.5" stroke="rgba(255,255,255,0.12)"/>
+        draw.rounded_rectangle((8, 8, width - 8, height - 8), radius=28, outline=(255, 255, 255, 28), width=1)
 
-  <text x="108" y="54" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="3">SNAPSHOT</text>
-  <text x="108" y="88" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">GitHub activity at a glance</text>
-  <text x="108" y="112" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">Public repos, tracked work, and language mix</text>
-  <text x="1172" y="54" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{generated_at} UTC</text>
-  <text x="108" y="224" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">TOP LANGUAGES</text>
-{''.join(card_parts)}
-{''.join(language_parts)}
-</svg>
-'''
+        draw.text((72, 58), f"{username.upper()} / PERSONAL WORKSHOP", font=label_font, fill="#8DD4FF")
+        draw.text((72, 108), "Automation, tools, and", font=title_font, fill="#F8FAFC")
+        draw.text((72, 162), "workflow experiments", font=title_font, fill="#F8FAFC")
+        draw.text((72, 226), "Original work, useful forks, and things I am actively exploring", font=subtitle_font, fill="#D8EBF8")
 
-    snapshot_path.write_text(svg, encoding="utf-8", newline="\n")
-    return hashlib.sha256(svg.encode("utf-8")).hexdigest()[:12]
+        active_index = frame_index % len(labels)
+        pill_x = 72
+        for index, (text, color) in enumerate(labels):
+            bbox = draw.textbbox((0, 0), text, font=pill_font)
+            pill_width = (bbox[2] - bbox[0]) + 34
+            fill_alpha = 84 if index == active_index else 52
+            border_alpha = 120 if index == active_index else 72
+            draw.rounded_rectangle(
+                (pill_x, 264, pill_x + pill_width, 294),
+                radius=15,
+                fill=(23, 50, 82, fill_alpha),
+                outline=(255, 255, 255, border_alpha),
+                width=1,
+            )
+            draw.text((pill_x + 17, 272), text, font=pill_font, fill="#EFF6FF")
+            if index == active_index:
+                glow_width = int(pill_width * (0.35 + 0.45 * abs(math.sin(t * math.pi))))
+                draw.rounded_rectangle(
+                    (pill_x + 4, 266, pill_x + 4 + glow_width, 270),
+                    radius=2,
+                    fill=color,
+                )
+            pill_x += pill_width + 18
+
+        frames.append(image.convert("P", palette=Image.Palette.ADAPTIVE))
+
+    frames[0].save(
+        hero_path,
+        save_all=True,
+        append_images=frames[1:],
+        duration=120,
+        loop=0,
+        optimize=False,
+        disposal=2,
+    )
+    return hashlib.sha256(hero_path.read_bytes()).hexdigest()[:12]
 
 
 def render_template(template_text: str, values: dict[str, str]) -> str:
@@ -327,6 +342,7 @@ def main() -> int:
     template_path = Path(args.template)
     output_path = Path(args.output)
     snapshot_svg_path = Path(args.snapshot_svg)
+    hero_gif_path = Path(args.hero_gif)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -337,10 +353,11 @@ def main() -> int:
     repos = fetch_repositories(username, token=token)
     repo_map = {repo["name"]: repo for repo in repos}
 
-    snapshot_hash = write_snapshot_svg(snapshot_svg_path, username, repos, config)
+    hero_hash = write_hero_gif(hero_gif_path, username)
 
     values = {
         "USERNAME": username,
+        "HEADER_IMAGE_URL": f"./assets/generated/profile-hero.gif?v={hero_hash}",
         "HEADER_TITLE": config["profile"]["header_title"],
         "HEADER_ROLE": config["profile"]["header_role"],
         "HEADER_INTRO_ZH": config["profile"]["header_intro_zh"],
@@ -365,7 +382,6 @@ def main() -> int:
         "SNAPSHOT_INTRO_EN": config["section_copy"]["snapshot_intro_en"],
         "SNAPSHOT_ROWS": build_snapshot_rows(repos, config),
         "TOP_LANGUAGES": build_top_languages(repos),
-        "SNAPSHOT_IMAGE_URL": f"./assets/generated/profile-snapshot.svg?v={snapshot_hash}",
         "WORK_ITEMS": format_list(config["how_i_work"]),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "FIND_HERE_ITEMS": format_list(config["find_here"]),

@@ -6,7 +6,7 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 <!-- AUTO-GENERATED FILE: edit README.template.md and profile-data.yml -->
 
 <div align="center">
-  <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
+  <img src="./assets/generated/profile-hero.gif?v=20d52f099a11" alt="Hi-Jiajun profile banner" />
 
   <h1>Hi, I'm Hi-Jiajun 👋</h1>
   <p>🧑‍💻 个人开发者 / Solo builder</p>
@@ -98,9 +98,23 @@ This section refreshes automatically based on recent repository activity.
 这里的数据由脚本从 GitHub 仓库信息自动汇总，不依赖第三方统计图片服务。  
 These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services.
 
-<p align="center">
-  <img src="./assets/generated/profile-snapshot.svg?v=692a77a29ba7" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
-</p>
+| Metric | Value |
+| --- | --- |
+| 📦 Public repositories / 公开仓库 | 29 |
+| 🍴 Fork repositories / Fork 仓库 | 20 |
+| 🛠️ Tracked original projects / 跟踪的原创项目 | 2 |
+| 🤝 Tracked forks & references / 跟踪的 fork 与参考项目 | 4 |
+| ⭐ Total stars received / 获得的总 Star | 3 |
+| ⏱️ Recently active list size / 最近活跃列表长度 | 5 |
+
+### 🧪 Top Languages / 常见语言
+
+- `Python` in 5 public repos / `Python` 出现在 5 个公开仓库中
+- `TypeScript` in 4 public repos / `TypeScript` 出现在 4 个公开仓库中
+- `C` in 3 public repos / `C` 出现在 3 个公开仓库中
+- `PowerShell` in 3 public repos / `PowerShell` 出现在 3 个公开仓库中
+- `JavaScript` in 1 public repos / `JavaScript` 出现在 1 个公开仓库中
+- `Shell` in 1 public repos / `Shell` 出现在 1 个公开仓库中
 
 ## ✨ What You Will Find Here / 这里会看到什么
 

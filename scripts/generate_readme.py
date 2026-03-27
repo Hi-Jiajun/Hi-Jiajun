@@ -6,7 +6,6 @@ import os
 import re
 import sys
 import hashlib
-import math
 from html import escape
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,7 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
     parser.add_argument("--snapshot-svg", default="assets/generated/profile-snapshot.svg")
-    parser.add_argument("--hero-gif", default="assets/generated/profile-hero.gif")
+    parser.add_argument("--focus-gif", default="assets/generated/profile-focus.gif")
     return parser.parse_args()
 
 
@@ -242,88 +241,70 @@ def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFo
     return ImageFont.load_default()
 
 
-def write_hero_gif(hero_path: Path, username: str) -> str:
-    hero_path.parent.mkdir(parents=True, exist_ok=True)
+def write_focus_gif(focus_path: Path, items: list[dict[str, str]]) -> str:
+    focus_path.parent.mkdir(parents=True, exist_ok=True)
 
-    width, height = 1280, 320
-    title_font = load_font(46, bold=True)
-    subtitle_font = load_font(22, bold=False)
+    width, height = 1280, 82
+    title_font = load_font(16, bold=True)
     label_font = load_font(18, bold=True)
-    pill_font = load_font(18, bold=True)
-
-    labels = [
-        ("AUTOMATION", "#38bdf8"),
-        ("AI WORKFLOWS", "#2dd4bf"),
-        ("NETWORKING", "#f59e0b"),
-    ]
 
     frames = []
-    frame_count = 12
+    frame_count = max(9, len(items) * 3)
 
     for frame_index in range(frame_count):
-        t = frame_index / frame_count
-        image = Image.new("RGBA", (width, height), (8, 18, 31, 255))
+        active_index = frame_index % len(items)
+        image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
         draw = ImageDraw.Draw(image, "RGBA")
 
-        for x in range(width):
-            blend = x / max(width - 1, 1)
-            r = int(8 + (20 - 8) * blend)
-            g = int(18 + (89 - 18) * blend)
-            b = int(31 + (92 - 31) * blend)
-            draw.line([(x, 0), (x, height)], fill=(r, g, b, 255))
+        draw.rounded_rectangle(
+            (8, 8, width - 8, height - 8),
+            radius=24,
+            fill=(12, 22, 36, 230),
+            outline=(255, 255, 255, 28),
+            width=1,
+        )
 
-        for y in range(0, height, 32):
-            draw.line([(0, y), (width, y)], fill=(255, 255, 255, 10), width=1)
-        for x in range(0, width, 32):
-            draw.line([(x, 0), (x, height)], fill=(255, 255, 255, 10), width=1)
+        draw.text((28, 20), "CURRENTLY EXPLORING", font=title_font, fill="#8DD4FF")
 
-        sweep_x = int(-220 + (width + 440) * t)
-        draw.ellipse((sweep_x - 140, 20, sweep_x + 220, 260), fill=(56, 189, 248, 34))
-        draw.ellipse((width - 360, 40, width - 40, 280), fill=(45, 212, 191, 28))
+        x = 250
+        for index, item in enumerate(items):
+            label = item["label"]
+            color = item["color"]
 
-        draw.rounded_rectangle((8, 8, width - 8, height - 8), radius=28, outline=(255, 255, 255, 28), width=1)
+            fill_alpha = 118 if index == active_index else 50
+            border_alpha = 150 if index == active_index else 66
+            bbox = draw.textbbox((0, 0), label, font=label_font)
+            text_width = bbox[2] - bbox[0]
+            box_width = max(180, text_width + 44)
 
-        draw.text((72, 58), f"{username.upper()} / PERSONAL WORKSHOP", font=label_font, fill="#8DD4FF")
-        draw.text((72, 108), "Automation, tools, and", font=title_font, fill="#F8FAFC")
-        draw.text((72, 162), "workflow experiments", font=title_font, fill="#F8FAFC")
-        draw.text((72, 226), "Original work, useful forks, and things I am actively exploring", font=subtitle_font, fill="#D8EBF8")
-
-        active_index = frame_index % len(labels)
-        pill_x = 72
-        for index, (text, color) in enumerate(labels):
-            bbox = draw.textbbox((0, 0), text, font=pill_font)
-            pill_width = (bbox[2] - bbox[0]) + 34
-            fill_alpha = 84 if index == active_index else 52
-            border_alpha = 120 if index == active_index else 72
             draw.rounded_rectangle(
-                (pill_x, 264, pill_x + pill_width, 294),
-                radius=15,
+                (x, 16, x + box_width, 66),
+                radius=18,
                 fill=(23, 50, 82, fill_alpha),
                 outline=(255, 255, 255, border_alpha),
                 width=1,
             )
-            draw.text((pill_x + 17, 272), text, font=pill_font, fill="#EFF6FF")
-            if index == active_index:
-                glow_width = int(pill_width * (0.35 + 0.45 * abs(math.sin(t * math.pi))))
-                draw.rounded_rectangle(
-                    (pill_x + 4, 266, pill_x + 4 + glow_width, 270),
-                    radius=2,
-                    fill=color,
-                )
-            pill_x += pill_width + 18
+            draw.rounded_rectangle(
+                (x + 14, 22, x + 14 + min(70, box_width - 28), 27),
+                radius=3,
+                fill=color if index == active_index else "#5b7fa6",
+            )
+            draw.text((x + 14, 39), label, font=label_font, fill="#EFF6FF")
+            x += box_width + 18
 
         frames.append(image.convert("P", palette=Image.Palette.ADAPTIVE))
 
     frames[0].save(
-        hero_path,
+        focus_path,
         save_all=True,
         append_images=frames[1:],
-        duration=120,
+        duration=180,
         loop=0,
         optimize=False,
         disposal=2,
+        transparency=0,
     )
-    return hashlib.sha256(hero_path.read_bytes()).hexdigest()[:12]
+    return hashlib.sha256(focus_path.read_bytes()).hexdigest()[:12]
 
 
 def render_template(template_text: str, values: dict[str, str]) -> str:
@@ -342,7 +323,7 @@ def main() -> int:
     template_path = Path(args.template)
     output_path = Path(args.output)
     snapshot_svg_path = Path(args.snapshot_svg)
-    hero_gif_path = Path(args.hero_gif)
+    focus_gif_path = Path(args.focus_gif)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -353,11 +334,11 @@ def main() -> int:
     repos = fetch_repositories(username, token=token)
     repo_map = {repo["name"]: repo for repo in repos}
 
-    hero_hash = write_hero_gif(hero_gif_path, username)
+    focus_hash = write_focus_gif(focus_gif_path, config["focus_strip"])
 
     values = {
         "USERNAME": username,
-        "HEADER_IMAGE_URL": f"./assets/generated/profile-hero.gif?v={hero_hash}",
+        "FOCUS_STRIP_URL": f"./assets/generated/profile-focus.gif?v={focus_hash}",
         "HEADER_TITLE": config["profile"]["header_title"],
         "HEADER_ROLE": config["profile"]["header_role"],
         "HEADER_INTRO_ZH": config["profile"]["header_intro_zh"],

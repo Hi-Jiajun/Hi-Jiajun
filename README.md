@@ -6,7 +6,9 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 <!-- AUTO-GENERATED FILE: edit README.template.md and profile-data.yml -->
 
 <div align="center">
-  <img src="./assets/generated/profile-hero.gif?v=dba97ec061e3" alt="Hi-Jiajun profile banner" />
+  <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
+  <br/>
+  <img src="./assets/generated/profile-focus.gif?v=6756e6de3cf3" alt="Animated current focus strip" />
 
   <h1>Hi, I'm Hi-Jiajun 👋</h1>
   <p>🧑‍💻 个人开发者 / Solo builder</p>

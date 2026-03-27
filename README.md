@@ -95,9 +95,26 @@ This section refreshes automatically based on recent repository activity.
 
 ## 📊 Snapshot / GitHub 概览
 
-| GitHub Stats | Top Languages |
+这里的数据由脚本从 GitHub 仓库信息自动汇总，不依赖第三方统计图片服务。  
+These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services.
+
+| Metric | Value |
 | --- | --- |
-| <img src="https://github-readme-stats.vercel.app/api?username=Hi-Jiajun&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true" alt="GitHub stats for Hi-Jiajun" /> | <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&langs_count=6" alt="Top languages for Hi-Jiajun" /> |
+| 📦 Public repositories / 公开仓库 | 29 |
+| 🍴 Fork repositories / Fork 仓库 | 20 |
+| 🛠️ Tracked original projects / 跟踪的原创项目 | 2 |
+| 🤝 Tracked forks & references / 跟踪的 fork 与参考项目 | 4 |
+| ⭐ Total stars received / 获得的总 Star | 3 |
+| ⏱️ Recently active list size / 最近活跃列表长度 | 5 |
+
+### 🧪 Top Languages / 常见语言
+
+- `Python` in 5 public repos / `Python` 出现在 5 个公开仓库中
+- `TypeScript` in 4 public repos / `TypeScript` 出现在 4 个公开仓库中
+- `C` in 3 public repos / `C` 出现在 3 个公开仓库中
+- `PowerShell` in 3 public repos / `PowerShell` 出现在 3 个公开仓库中
+- `JavaScript` in 1 public repos / `JavaScript` 出现在 1 个公开仓库中
+- `Shell` in 1 public repos / `Shell` 出现在 1 个公开仓库中
 
 ## ✨ What You Will Find Here / 这里会看到什么
 

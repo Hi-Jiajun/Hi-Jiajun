@@ -70,9 +70,16 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 
 ## 📊 Snapshot / GitHub 概览
 
-| GitHub Stats | Top Languages |
+{{ SNAPSHOT_INTRO_ZH }}  
+{{ SNAPSHOT_INTRO_EN }}
+
+| Metric | Value |
 | --- | --- |
-| <img src="https://github-readme-stats.vercel.app/api?username={{ USERNAME }}&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true" alt="GitHub stats for {{ USERNAME }}" /> | <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ USERNAME }}&layout=compact&hide_border=true&langs_count=6" alt="Top languages for {{ USERNAME }}" /> |
+{{ SNAPSHOT_ROWS }}
+
+### 🧪 Top Languages / 常见语言
+
+{{ TOP_LANGUAGES }}
 
 ## ✨ What You Will Find Here / 这里会看到什么
 

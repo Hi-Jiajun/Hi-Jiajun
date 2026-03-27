@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib import parse, request
+from collections import Counter
 
 import yaml
 
@@ -160,6 +161,44 @@ def build_recent_rows(
     return "\n".join(rows)
 
 
+def build_snapshot_rows(
+    repos: list[dict[str, Any]],
+    config: dict[str, Any],
+) -> str:
+    public_repo_count = len(repos)
+    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
+    original_tracked = len(config["projects"]["original"])
+    fork_tracked = len(config["projects"]["forks"])
+    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
+    active_limit = int(config.get("recent_activity", {}).get("limit", 5))
+
+    metrics = [
+        ("📦 Public repositories / 公开仓库", str(public_repo_count)),
+        ("🍴 Fork repositories / Fork 仓库", str(fork_repo_count)),
+        ("🛠️ Tracked original projects / 跟踪的原创项目", str(original_tracked)),
+        ("🤝 Tracked forks & references / 跟踪的 fork 与参考项目", str(fork_tracked)),
+        ("⭐ Total stars received / 获得的总 Star", str(total_stars)),
+        ("⏱️ Recently active list size / 最近活跃列表长度", str(active_limit)),
+    ]
+    return "\n".join(f"| {escape_cell(label)} | {escape_cell(value)} |" for label, value in metrics)
+
+
+def build_top_languages(repos: list[dict[str, Any]], limit: int = 6) -> str:
+    counter: Counter[str] = Counter()
+    for repo in repos:
+        language = repo.get("language")
+        if language:
+            counter[language] += 1
+
+    if not counter:
+        return "- No language data available yet / 暂时没有可用的语言数据"
+
+    lines = []
+    for language, count in counter.most_common(limit):
+        lines.append(f"- `{language}` in {count} public repos / `{language}` 出现在 {count} 个公开仓库中")
+    return "\n".join(lines)
+
+
 def render_template(template_text: str, values: dict[str, str]) -> str:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
@@ -207,6 +246,10 @@ def main() -> int:
         "RECENT_INTRO_ZH": config["section_copy"]["recent_intro_zh"],
         "RECENT_INTRO_EN": config["section_copy"]["recent_intro_en"],
         "RECENT_ROWS": build_recent_rows(config, repo_map, username),
+        "SNAPSHOT_INTRO_ZH": config["section_copy"]["snapshot_intro_zh"],
+        "SNAPSHOT_INTRO_EN": config["section_copy"]["snapshot_intro_en"],
+        "SNAPSHOT_ROWS": build_snapshot_rows(repos, config),
+        "TOP_LANGUAGES": build_top_languages(repos),
         "WORK_ITEMS": format_list(config["how_i_work"]),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "FIND_HERE_ITEMS": format_list(config["find_here"]),

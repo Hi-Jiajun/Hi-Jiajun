@@ -19,6 +19,8 @@ section_copy:
   forks_intro_en: "These repositories are here because I use them, study them, adapt them, or have contributed something around them."
   recent_intro_zh: "这部分会根据仓库最近的推送时间自动刷新。"
   recent_intro_en: "This section refreshes automatically based on recent repository activity."
+  snapshot_intro_zh: "这里的数据由脚本从 GitHub 仓库信息自动汇总，不依赖第三方统计图片服务。"
+  snapshot_intro_en: "These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services."
 
 about:
   - icon: "🤖"

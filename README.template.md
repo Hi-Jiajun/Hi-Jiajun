@@ -74,7 +74,7 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 {{ SNAPSHOT_INTRO_EN }}
 
 <p align="center">
-  <img src="./assets/generated/profile-snapshot.svg" alt="Auto-generated GitHub snapshot for {{ USERNAME }}" />
+  <img src="{{ SNAPSHOT_IMAGE_URL }}" alt="Auto-generated GitHub snapshot for {{ USERNAME }}" />
 </p>
 
 ## ✨ What You Will Find Here / 这里会看到什么

@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sys
+import hashlib
 from html import escape
 from datetime import datetime, timezone
 from pathlib import Path
@@ -215,7 +216,7 @@ def write_snapshot_svg(
     username: str,
     repos: list[dict[str, Any]],
     config: dict[str, Any],
-) -> None:
+) -> str:
     snapshot_path.parent.mkdir(parents=True, exist_ok=True)
 
     public_repo_count = len(repos)
@@ -306,6 +307,7 @@ def write_snapshot_svg(
 '''
 
     snapshot_path.write_text(svg, encoding="utf-8", newline="\n")
+    return hashlib.sha256(svg.encode("utf-8")).hexdigest()[:12]
 
 
 def render_template(template_text: str, values: dict[str, str]) -> str:
@@ -334,6 +336,8 @@ def main() -> int:
     repos = fetch_repositories(username, token=token)
     repo_map = {repo["name"]: repo for repo in repos}
 
+    snapshot_hash = write_snapshot_svg(snapshot_svg_path, username, repos, config)
+
     values = {
         "USERNAME": username,
         "HEADER_TITLE": config["profile"]["header_title"],
@@ -360,14 +364,13 @@ def main() -> int:
         "SNAPSHOT_INTRO_EN": config["section_copy"]["snapshot_intro_en"],
         "SNAPSHOT_ROWS": build_snapshot_rows(repos, config),
         "TOP_LANGUAGES": build_top_languages(repos),
+        "SNAPSHOT_IMAGE_URL": f"./assets/generated/profile-snapshot.svg?v={snapshot_hash}",
         "WORK_ITEMS": format_list(config["how_i_work"]),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "FIND_HERE_ITEMS": format_list(config["find_here"]),
         "FOOTER_ZH": config["profile"]["footer_zh"],
         "FOOTER_EN": config["profile"]["footer_en"],
     }
-
-    write_snapshot_svg(snapshot_svg_path, username, repos, config)
 
     output = render_template(template_text, values)
     with output_path.open("w", encoding="utf-8", newline="\n") as fh:

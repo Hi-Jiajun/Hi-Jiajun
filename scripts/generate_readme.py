@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="profile-data.yml")
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
-    parser.add_argument("--snapshot-svg", default="assets/generated/profile-snapshot.svg")
+    parser.add_argument("--snapshot-png", default="assets/generated/profile-snapshot.png")
     parser.add_argument("--focus-gif", default="assets/generated/profile-focus.gif")
     return parser.parse_args()
 
@@ -307,6 +307,86 @@ def write_focus_gif(focus_path: Path, items: list[dict[str, str]]) -> str:
     return hashlib.sha256(focus_path.read_bytes()).hexdigest()[:12]
 
 
+def write_snapshot_png(snapshot_path: Path, username: str, repos: list[dict[str, Any]], config: dict[str, Any]) -> str:
+    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+
+    width, height = 1280, 460
+    image = Image.new("RGBA", (width, height), (8, 18, 31, 255))
+    draw = ImageDraw.Draw(image, "RGBA")
+
+    title_font = load_font(42, bold=True)
+    label_font = load_font(18, bold=True)
+    stat_value_font = load_font(36, bold=True)
+    stat_label_font = load_font(16, bold=False)
+    small_font = load_font(14, bold=False)
+
+    for x in range(width):
+        blend = x / max(width - 1, 1)
+        r = int(8 + (18 - 8) * blend)
+        g = int(18 + (75 - 18) * blend)
+        b = int(31 + (87 - 31) * blend)
+        draw.line([(x, 0), (x, height)], fill=(r, g, b, 255))
+
+    draw.rounded_rectangle((8, 8, width - 8, height - 8), radius=30, outline=(255, 255, 255, 24), width=1)
+    draw.ellipse((905, 40, 1190, 260), fill=(56, 189, 248, 14))
+    draw.ellipse((780, 220, 1050, 430), fill=(45, 212, 191, 10))
+
+    public_repo_count = len(repos)
+    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
+    original_tracked = len(config["projects"]["original"])
+    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
+
+    draw.text((72, 58), "SNAPSHOT / AUTO-GENERATED", font=label_font, fill="#8DD4FF")
+    draw.text((72, 102), "GitHub snapshot", font=title_font, fill="#F8FAFC")
+    draw.text((72, 154), "A compact view of repositories, tracked work, and language mix", font=stat_label_font, fill="#D4E7F5")
+    draw.text((1160, 62), format_date(datetime.now(timezone.utc).isoformat()) + " UTC", font=small_font, fill="#B7D1E6", anchor="ra")
+
+    cards = [
+        ("Public repos", str(public_repo_count), "#38bdf8"),
+        ("Fork repos", str(fork_repo_count), "#60a5fa"),
+        ("Original work", str(original_tracked), "#2dd4bf"),
+        ("Total stars", str(total_stars), "#f59e0b"),
+    ]
+
+    card_positions = [
+        (72, 214),
+        (336, 214),
+        (72, 336),
+        (336, 336),
+    ]
+    for (label, value, color), (x0, y0) in zip(cards, card_positions):
+        x1 = x0 + 224
+        y1 = y0 + 92
+        draw.rounded_rectangle((x0, y0, x1, y1), radius=22, fill=(16, 30, 50, 218), outline=(255, 255, 255, 24), width=1)
+        draw.rounded_rectangle((x0 + 18, y0 + 18, x0 + 68, y0 + 24), radius=3, fill=color)
+        draw.text((x0 + 18, y0 + 34), value, font=stat_value_font, fill="#F8FAFC")
+        draw.text((x0 + 18, y0 + 72), label, font=stat_label_font, fill="#C7DCEF")
+
+    panel_x0, panel_y0, panel_x1, panel_y1 = 636, 214, 1200, 436
+    draw.rounded_rectangle((panel_x0, panel_y0, panel_x1, panel_y1), radius=24, fill=(13, 28, 44, 210), outline=(255, 255, 255, 22), width=1)
+    draw.text((664, 258), "TOP LANGUAGES", font=label_font, fill="#8DD4FF")
+
+    top_languages = collect_top_languages(repos, limit=4)
+    max_count = max((count for _language, count in top_languages), default=1)
+    palette = ["#38bdf8", "#2dd4bf", "#f59e0b", "#a78bfa", "#f472b6"]
+
+    for index, (language, count) in enumerate(top_languages):
+        y = 294 + index * 34
+        bar_y = y + 20
+        bar_width = 476
+        fill_width = bar_width if max_count == 0 else round((count / max_count) * bar_width)
+        color = palette[index % len(palette)]
+
+        draw.text((664, y), language, font=stat_label_font, fill="#F8FAFC")
+        draw.text((1168, y), f"{count} repos", font=small_font, fill="#C7DCEF", anchor="ra")
+        draw.rounded_rectangle((664, bar_y, 664 + bar_width, bar_y + 10), radius=5, fill=(255, 255, 255, 18))
+        draw.rounded_rectangle((664, bar_y, 664 + fill_width, bar_y + 10), radius=5, fill=color)
+
+    image = image.convert("RGB")
+    image.save(snapshot_path, format="PNG", optimize=True)
+    return hashlib.sha256(snapshot_path.read_bytes()).hexdigest()[:12]
+
+
 def render_template(template_text: str, values: dict[str, str]) -> str:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
@@ -322,7 +402,7 @@ def main() -> int:
     config_path = Path(args.config)
     template_path = Path(args.template)
     output_path = Path(args.output)
-    snapshot_svg_path = Path(args.snapshot_svg)
+    snapshot_png_path = Path(args.snapshot_png)
     focus_gif_path = Path(args.focus_gif)
 
     config = load_yaml(config_path)
@@ -335,10 +415,12 @@ def main() -> int:
     repo_map = {repo["name"]: repo for repo in repos}
 
     focus_hash = write_focus_gif(focus_gif_path, config["focus_strip"])
+    snapshot_hash = write_snapshot_png(snapshot_png_path, username, repos, config)
 
     values = {
         "USERNAME": username,
         "FOCUS_STRIP_URL": f"./assets/generated/profile-focus.gif?v={focus_hash}",
+        "SNAPSHOT_IMAGE_URL": f"./assets/generated/profile-snapshot.png?v={snapshot_hash}",
         "HEADER_TITLE": config["profile"]["header_title"],
         "HEADER_ROLE": config["profile"]["header_role"],
         "HEADER_INTRO_ZH": config["profile"]["header_intro_zh"],

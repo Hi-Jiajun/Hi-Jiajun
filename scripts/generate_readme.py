@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sys
+from html import escape
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="profile-data.yml")
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
+    parser.add_argument("--snapshot-svg", default="assets/generated/profile-snapshot.svg")
     return parser.parse_args()
 
 
@@ -199,6 +201,113 @@ def build_top_languages(repos: list[dict[str, Any]], limit: int = 6) -> str:
     return "\n".join(lines)
 
 
+def collect_top_languages(repos: list[dict[str, Any]], limit: int = 5) -> list[tuple[str, int]]:
+    counter: Counter[str] = Counter()
+    for repo in repos:
+        language = repo.get("language")
+        if language:
+            counter[language] += 1
+    return counter.most_common(limit)
+
+
+def write_snapshot_svg(
+    snapshot_path: Path,
+    username: str,
+    repos: list[dict[str, Any]],
+    config: dict[str, Any],
+) -> None:
+    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+
+    public_repo_count = len(repos)
+    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
+    original_tracked = len(config["projects"]["original"])
+    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
+    top_languages = collect_top_languages(repos, limit=5)
+    max_count = max((count for _language, count in top_languages), default=1)
+
+    cards = [
+        ("Public repos", str(public_repo_count), "#38bdf8"),
+        ("Fork repos", str(fork_repo_count), "#60a5fa"),
+        ("Original work", str(original_tracked), "#2dd4bf"),
+        ("Total stars", str(total_stars), "#f59e0b"),
+    ]
+
+    card_parts = []
+    for index, (label, value, accent) in enumerate(cards):
+        x = 56 + index * 185
+        card_parts.append(
+            f'''
+  <g transform="translate({x} 92)">
+    <rect width="165" height="92" rx="18" fill="rgba(255,255,255,0.05)"/>
+    <rect x="0.75" y="0.75" width="163.5" height="90.5" rx="17.25" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="18" y="18" width="36" height="6" rx="3" fill="{accent}"/>
+    <text x="18" y="48" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">{escape(value)}</text>
+    <text x="18" y="70" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{escape(label)}</text>
+  </g>'''
+        )
+
+    palette = ["#38bdf8", "#2dd4bf", "#f59e0b", "#a78bfa", "#f472b6"]
+    language_parts = []
+    for index, (language, count) in enumerate(top_languages):
+        y = 246 + index * 44
+        width = 420 if max_count == 0 else round((count / max_count) * 420)
+        color = palette[index % len(palette)]
+        language_parts.append(
+            f'''
+  <text x="780" y="{y}" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">{escape(language)}</text>
+  <text x="1188" y="{y}" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{count} repos</text>
+  <rect x="780" y="{y + 10}" width="420" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
+  <rect x="780" y="{y + 10}" width="{width}" height="10" rx="5" fill="{color}"/>'''
+        )
+
+    if not language_parts:
+        language_parts.append(
+            '''
+  <text x="780" y="262" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">No language data available yet.</text>'''
+        )
+
+    svg = f'''<svg width="1280" height="480" viewBox="0 0 1280 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">{escape(username)} profile snapshot</title>
+  <desc id="desc">Auto-generated GitHub snapshot showing repository metrics and top languages.</desc>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="24" x2="1240" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08121F"/>
+      <stop offset="0.55" stop-color="#0F2236"/>
+      <stop offset="1" stop-color="#154F59"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 96) rotate(18) scale(320 180)">
+      <stop stop-color="#38BDF8" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 92) rotate(160) scale(340 190)">
+      <stop stop-color="#2DD4BF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" stroke="white" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#bg)"/>
+  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#glowA)"/>
+  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#glowB)"/>
+  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#grid)"/>
+  <rect x="8.5" y="8.5" width="1263" height="463" rx="27.5" stroke="rgba(255,255,255,0.12)"/>
+
+  <text x="56" y="56" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3">SNAPSHOT / AUTO-GENERATED</text>
+  <text x="56" y="86" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">GitHub activity at a glance</text>
+  <text x="56" y="222" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">TOP LANGUAGES</text>
+  <text x="780" y="56" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="15">Updated from public repository data</text>
+{''.join(card_parts)}
+{''.join(language_parts)}
+  <text x="56" y="430" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Generated by scripts/generate_readme.py</text>
+  <text x="1224" y="430" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{escape(format_date(datetime.now(timezone.utc).isoformat()))} UTC</text>
+</svg>
+'''
+
+    snapshot_path.write_text(svg, encoding="utf-8", newline="\n")
+
+
 def render_template(template_text: str, values: dict[str, str]) -> str:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
@@ -214,6 +323,7 @@ def main() -> int:
     config_path = Path(args.config)
     template_path = Path(args.template)
     output_path = Path(args.output)
+    snapshot_svg_path = Path(args.snapshot_svg)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -256,6 +366,8 @@ def main() -> int:
         "FOOTER_ZH": config["profile"]["footer_zh"],
         "FOOTER_EN": config["profile"]["footer_en"],
     }
+
+    write_snapshot_svg(snapshot_svg_path, username, repos, config)
 
     output = render_template(template_text, values)
     with output_path.open("w", encoding="utf-8", newline="\n") as fh:

@@ -7,8 +7,6 @@ Do not edit README.md directly; update this template or profile-data.yml instead
 
 <div align="center">
   <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
-  <br/>
-  <img src="{{ FOCUS_STRIP_URL }}" alt="Animated current focus strip" />
 
   <h1>{{ HEADER_TITLE }}</h1>
   <p>{{ HEADER_ROLE }}</p>

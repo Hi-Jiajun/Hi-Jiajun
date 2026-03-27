@@ -26,7 +26,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
     parser.add_argument("--snapshot-png", default="assets/generated/profile-snapshot.png")
-    parser.add_argument("--focus-gif", default="assets/generated/profile-focus.gif")
     return parser.parse_args()
 
 
@@ -241,72 +240,6 @@ def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFo
     return ImageFont.load_default()
 
 
-def write_focus_gif(focus_path: Path, items: list[dict[str, str]]) -> str:
-    focus_path.parent.mkdir(parents=True, exist_ok=True)
-
-    width, height = 1280, 82
-    title_font = load_font(16, bold=True)
-    label_font = load_font(18, bold=True)
-
-    frames = []
-    frame_count = max(9, len(items) * 3)
-
-    for frame_index in range(frame_count):
-        active_index = frame_index % len(items)
-        image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-        draw = ImageDraw.Draw(image, "RGBA")
-
-        draw.rounded_rectangle(
-            (8, 8, width - 8, height - 8),
-            radius=24,
-            fill=(12, 22, 36, 230),
-            outline=(255, 255, 255, 28),
-            width=1,
-        )
-
-        draw.text((28, 20), "CURRENTLY EXPLORING", font=title_font, fill="#8DD4FF")
-
-        x = 250
-        for index, item in enumerate(items):
-            label = item["label"]
-            color = item["color"]
-
-            fill_alpha = 118 if index == active_index else 50
-            border_alpha = 150 if index == active_index else 66
-            bbox = draw.textbbox((0, 0), label, font=label_font)
-            text_width = bbox[2] - bbox[0]
-            box_width = max(180, text_width + 44)
-
-            draw.rounded_rectangle(
-                (x, 16, x + box_width, 66),
-                radius=18,
-                fill=(23, 50, 82, fill_alpha),
-                outline=(255, 255, 255, border_alpha),
-                width=1,
-            )
-            draw.rounded_rectangle(
-                (x + 14, 22, x + 14 + min(70, box_width - 28), 27),
-                radius=3,
-                fill=color if index == active_index else "#5b7fa6",
-            )
-            draw.text((x + 14, 39), label, font=label_font, fill="#EFF6FF")
-            x += box_width + 18
-
-        frames.append(image.convert("P", palette=Image.Palette.ADAPTIVE))
-
-    frames[0].save(
-        focus_path,
-        save_all=True,
-        append_images=frames[1:],
-        duration=180,
-        loop=0,
-        optimize=False,
-        disposal=2,
-        transparency=0,
-    )
-    return hashlib.sha256(focus_path.read_bytes()).hexdigest()[:12]
-
-
 def write_snapshot_png(snapshot_path: Path, username: str, repos: list[dict[str, Any]], config: dict[str, Any]) -> str:
     snapshot_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -403,7 +336,6 @@ def main() -> int:
     template_path = Path(args.template)
     output_path = Path(args.output)
     snapshot_png_path = Path(args.snapshot_png)
-    focus_gif_path = Path(args.focus_gif)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -414,12 +346,10 @@ def main() -> int:
     repos = fetch_repositories(username, token=token)
     repo_map = {repo["name"]: repo for repo in repos}
 
-    focus_hash = write_focus_gif(focus_gif_path, config["focus_strip"])
     snapshot_hash = write_snapshot_png(snapshot_png_path, username, repos, config)
 
     values = {
         "USERNAME": username,
-        "FOCUS_STRIP_URL": f"./assets/generated/profile-focus.gif?v={focus_hash}",
         "SNAPSHOT_IMAGE_URL": f"./assets/generated/profile-snapshot.png?v={snapshot_hash}",
         "HEADER_TITLE": config["profile"]["header_title"],
         "HEADER_ROLE": config["profile"]["header_role"],

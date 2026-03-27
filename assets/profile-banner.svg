@@ -1,78 +1,45 @@
-<svg width="1280" height="300" viewBox="0 0 1280 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1280" height="260" viewBox="0 0 1280 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Hi-Jiajun profile banner</title>
-  <desc id="desc">A polished profile banner for Hi-Jiajun focused on automation, tools, workflows, and experiments.</desc>
+  <desc id="desc">A minimal profile banner for Hi-Jiajun focused on automation, tools, and workflows.</desc>
   <defs>
-    <linearGradient id="bg" x1="60" y1="20" x2="1220" y2="280" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#09121E"/>
-      <stop offset="0.52" stop-color="#10253B"/>
-      <stop offset="1" stop-color="#1C5D66"/>
+    <linearGradient id="bg" x1="36" y1="20" x2="1244" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111E"/>
+      <stop offset="0.58" stop-color="#102338"/>
+      <stop offset="1" stop-color="#184B54"/>
     </linearGradient>
-    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 82) rotate(24) scale(320 170)">
-      <stop stop-color="#38BDF8" stop-opacity="0.22"/>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1030 74) rotate(160) scale(320 170)">
+      <stop stop-color="#38BDF8" stop-opacity="0.18"/>
       <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1048 92) rotate(154) scale(360 180)">
-      <stop stop-color="#2DD4BF" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-      <path d="M36 0H0V36" stroke="white" stroke-opacity="0.05"/>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="white" stroke-opacity="0.04"/>
     </pattern>
   </defs>
 
-  <rect x="8" y="8" width="1264" height="284" rx="28" fill="url(#bg)"/>
-  <rect x="8" y="8" width="1264" height="284" rx="28" fill="url(#glowLeft)"/>
-  <rect x="8" y="8" width="1264" height="284" rx="28" fill="url(#glowRight)"/>
-  <rect x="8" y="8" width="1264" height="284" rx="28" fill="url(#grid)"/>
-  <rect x="8.5" y="8.5" width="1263" height="283" rx="27.5" stroke="white" stroke-opacity="0.12"/>
+  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#bg)"/>
+  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#glow)"/>
+  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#grid)"/>
+  <rect x="8.5" y="8.5" width="1263" height="243" rx="27.5" stroke="white" stroke-opacity="0.12"/>
 
-  <g transform="translate(72 62)">
-    <text x="0" y="0" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3">
-      HI-JIAJUN / SOLO BUILDER
-    </text>
-    <text x="0" y="58" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">
-      Automation, tools,
-    </text>
-    <text x="0" y="114" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">
-      and AI workflows
-    </text>
-    <text x="0" y="156" fill="#D8EBF8" font-family="Segoe UI, Arial, sans-serif" font-size="20">
-      Original projects, useful forks, and practical workflow experiments
-    </text>
-  </g>
+  <text x="72" y="68" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3">
+    HI-JIAJUN / SOLO BUILDER
+  </text>
+  <text x="72" y="126" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
+    Automation, tools,
+  </text>
+  <text x="72" y="180" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
+    and AI workflows
+  </text>
+  <text x="72" y="220" fill="#D4E7F5" font-family="Segoe UI, Arial, sans-serif" font-size="20">
+    Original projects, useful forks, and practical workflow experiments
+  </text>
 
-  <g transform="translate(74 226)">
-    <rect width="142" height="30" rx="15" fill="#173252" fill-opacity="0.88"/>
-    <rect x="0.75" y="0.75" width="140.5" height="28.5" rx="14.25" stroke="#60A5FA" stroke-opacity="0.32"/>
-    <text x="71" y="20" text-anchor="middle" fill="#EFF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">AUTOMATION</text>
-
-    <rect x="158" width="150" height="30" rx="15" fill="#173252" fill-opacity="0.88"/>
-    <rect x="158.75" y="0.75" width="148.5" height="28.5" rx="14.25" stroke="#60A5FA" stroke-opacity="0.32"/>
-    <text x="233" y="20" text-anchor="middle" fill="#EFF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">AI WORKFLOWS</text>
-
-    <rect x="324" width="136" height="30" rx="15" fill="#173252" fill-opacity="0.88"/>
-    <rect x="324.75" y="0.75" width="134.5" height="28.5" rx="14.25" stroke="#60A5FA" stroke-opacity="0.32"/>
-    <text x="392" y="20" text-anchor="middle" fill="#EFF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">NETWORKING</text>
-  </g>
-
-  <g transform="translate(890 58)">
-    <rect width="286" height="176" rx="24" fill="rgba(255,255,255,0.05)"/>
-    <rect x="0.75" y="0.75" width="284.5" height="174.5" rx="23.25" stroke="rgba(255,255,255,0.12)"/>
-
-    <rect x="24" y="28" width="72" height="8" rx="4" fill="#38BDF8"/>
-    <rect x="24" y="54" width="214" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
-    <rect x="24" y="54" width="168" height="10" rx="5" fill="#38BDF8"/>
-
-    <rect x="24" y="86" width="72" height="8" rx="4" fill="#2DD4BF"/>
-    <rect x="24" y="112" width="214" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
-    <rect x="24" y="112" width="186" height="10" rx="5" fill="#2DD4BF"/>
-
-    <rect x="24" y="144" width="72" height="8" rx="4" fill="#F59E0B"/>
-    <rect x="24" y="170" width="214" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
-    <rect x="24" y="170" width="132" height="10" rx="5" fill="#F59E0B"/>
-
-    <text x="252" y="62" text-anchor="end" fill="#D9ECF8" font-family="Segoe UI, Arial, sans-serif" font-size="12">Automation</text>
-    <text x="252" y="120" text-anchor="end" fill="#D9ECF8" font-family="Segoe UI, Arial, sans-serif" font-size="12">AI workflows</text>
-    <text x="252" y="178" text-anchor="end" fill="#D9ECF8" font-family="Segoe UI, Arial, sans-serif" font-size="12">Networking</text>
+  <g transform="translate(930 66)">
+    <rect width="220" height="128" rx="24" fill="rgba(255,255,255,0.04)"/>
+    <rect x="0.75" y="0.75" width="218.5" height="126.5" rx="23.25" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="28" y="28" width="60" height="8" rx="4" fill="#38BDF8"/>
+    <rect x="28" y="56" width="126" height="10" rx="5" fill="#38BDF8"/>
+    <rect x="28" y="84" width="60" height="8" rx="4" fill="#2DD4BF"/>
+    <rect x="28" y="112" width="150" height="10" rx="5" fill="#2DD4BF"/>
   </g>
 </svg>

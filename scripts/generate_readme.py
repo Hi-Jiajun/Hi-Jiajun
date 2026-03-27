@@ -234,43 +234,43 @@ def write_snapshot_svg(
 
     card_parts = []
     for index, (label, value, accent) in enumerate(cards):
-        x = 56 + index * 185
+        x = 56 + index * 292
         card_parts.append(
             f'''
-  <g transform="translate({x} 92)">
-    <rect width="165" height="92" rx="18" fill="rgba(255,255,255,0.05)"/>
-    <rect x="0.75" y="0.75" width="163.5" height="90.5" rx="17.25" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="18" y="18" width="36" height="6" rx="3" fill="{accent}"/>
-    <text x="18" y="48" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">{escape(value)}</text>
-    <text x="18" y="70" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{escape(label)}</text>
+  <g transform="translate({x} 96)">
+    <rect width="256" height="92" rx="18" fill="rgba(255,255,255,0.05)"/>
+    <rect x="0.75" y="0.75" width="254.5" height="90.5" rx="17.25" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="20" y="18" width="42" height="6" rx="3" fill="{accent}"/>
+    <text x="20" y="50" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">{escape(value)}</text>
+    <text x="20" y="74" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">{escape(label)}</text>
   </g>'''
         )
 
     palette = ["#38bdf8", "#2dd4bf", "#f59e0b", "#a78bfa", "#f472b6"]
     language_parts = []
     for index, (language, count) in enumerate(top_languages):
-        y = 246 + index * 44
-        width = 420 if max_count == 0 else round((count / max_count) * 420)
+        y = 268 + index * 38
+        width = 1088 if max_count == 0 else round((count / max_count) * 1088)
         color = palette[index % len(palette)]
         language_parts.append(
             f'''
-  <text x="780" y="{y}" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">{escape(language)}</text>
-  <text x="1188" y="{y}" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{count} repos</text>
-  <rect x="780" y="{y + 10}" width="420" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
-  <rect x="780" y="{y + 10}" width="{width}" height="10" rx="5" fill="{color}"/>'''
+  <text x="96" y="{y}" fill="#E5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">{escape(language)}</text>
+  <text x="1184" y="{y}" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{count} repos</text>
+  <rect x="96" y="{y + 10}" width="1088" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
+  <rect x="96" y="{y + 10}" width="{width}" height="10" rx="5" fill="{color}"/>'''
         )
 
     if not language_parts:
         language_parts.append(
             '''
-  <text x="780" y="262" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">No language data available yet.</text>'''
+  <text x="96" y="278" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="14">No language data available yet.</text>'''
         )
 
-    svg = f'''<svg width="1280" height="480" viewBox="0 0 1280 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+    svg = f'''<svg width="1280" height="452" viewBox="0 0 1280 452" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">{escape(username)} profile snapshot</title>
   <desc id="desc">Auto-generated GitHub snapshot showing repository metrics and top languages.</desc>
   <defs>
-    <linearGradient id="bg" x1="40" y1="24" x2="1240" y2="456" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="40" y1="24" x2="1240" y2="428" gradientUnits="userSpaceOnUse">
       <stop stop-color="#08121F"/>
       <stop offset="0.55" stop-color="#0F2236"/>
       <stop offset="1" stop-color="#154F59"/>
@@ -288,20 +288,20 @@ def write_snapshot_svg(
     </pattern>
   </defs>
 
-  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#bg)"/>
-  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#glowA)"/>
-  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#glowB)"/>
-  <rect x="8" y="8" width="1264" height="464" rx="28" fill="url(#grid)"/>
-  <rect x="8.5" y="8.5" width="1263" height="463" rx="27.5" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="8" y="8" width="1264" height="436" rx="28" fill="url(#bg)"/>
+  <rect x="8" y="8" width="1264" height="436" rx="28" fill="url(#glowA)"/>
+  <rect x="8" y="8" width="1264" height="436" rx="28" fill="url(#glowB)"/>
+  <rect x="8" y="8" width="1264" height="436" rx="28" fill="url(#grid)"/>
+  <rect x="8.5" y="8.5" width="1263" height="435" rx="27.5" stroke="rgba(255,255,255,0.12)"/>
 
   <text x="56" y="56" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3">SNAPSHOT / AUTO-GENERATED</text>
   <text x="56" y="86" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">GitHub activity at a glance</text>
-  <text x="56" y="222" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">TOP LANGUAGES</text>
-  <text x="780" y="56" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="15">Updated from public repository data</text>
+  <text x="1224" y="56" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="15">Updated from public repository data</text>
+  <text x="56" y="240" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">TOP LANGUAGES</text>
 {''.join(card_parts)}
 {''.join(language_parts)}
-  <text x="56" y="430" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Generated by scripts/generate_readme.py</text>
-  <text x="1224" y="430" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{escape(format_date(datetime.now(timezone.utc).isoformat()))} UTC</text>
+  <text x="56" y="410" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Generated by scripts/generate_readme.py</text>
+  <text x="1224" y="410" text-anchor="end" fill="#B9D4E8" font-family="Segoe UI, Arial, sans-serif" font-size="13">{escape(format_date(datetime.now(timezone.utc).isoformat()))} UTC</text>
 </svg>
 '''
 

@@ -58,7 +58,7 @@ These repositories are here because I use them, study them, adapt them, or have 
 | [memory-lancedb-pro](https://github.com/Hi-Jiajun/memory-lancedb-pro) | Fork for learning, experimenting, and local adaptation around memory workflows<br/>用于记忆工作流学习、实验和本地适配的 fork | TypeScript · ⭐ 0 · updated 2026-03-28 |
 | [pua](https://github.com/Hi-Jiajun/pua) | Fork for studying and adapting agent execution patterns<br/>用于研究和适配 Agent 执行模式的 fork | TypeScript · ⭐ 0 · updated 2026-03-22 |
 | [OpenMAIC](https://github.com/Hi-Jiajun/OpenMAIC) | Fork used to explore multi-agent classroom workflows<br/>用于探索多 Agent 课堂工作流的 fork | TypeScript · ⭐ 0 · updated 2026-03-27 |
-| [openclaw](https://github.com/Hi-Jiajun/openclaw) | Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目 | TypeScript · ⭐ 0 · updated 2026-03-28 |
+| [openclaw](https://github.com/Hi-Jiajun/openclaw) | Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目 | TypeScript · ⭐ 0 · updated 2026-03-29 |
 
 ## 📈 Recently Active / 最近活跃
 
@@ -67,9 +67,9 @@ This section refreshes automatically based on recent repository activity.
 
 | Repository | Status |
 | --- | --- |
+| [openclaw](https://github.com/Hi-Jiajun/openclaw) | 🍴 Fork · Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目<br/>updated 2026-03-29 |
 | [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | 🛠️ Original · Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程<br/>updated 2026-03-29 |
 | [memory-lancedb-pro](https://github.com/Hi-Jiajun/memory-lancedb-pro) | 🍴 Fork · Fork for learning, experimenting, and local adaptation around memory workflows<br/>用于记忆工作流学习、实验和本地适配的 fork<br/>updated 2026-03-28 |
-| [openclaw](https://github.com/Hi-Jiajun/openclaw) | 🍴 Fork · Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目<br/>updated 2026-03-28 |
 | [OpenMAIC](https://github.com/Hi-Jiajun/OpenMAIC) | 🍴 Fork · Fork used to explore multi-agent classroom workflows<br/>用于探索多 Agent 课堂工作流的 fork<br/>updated 2026-03-27 |
 | [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | 🛠️ Original · Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库<br/>updated 2026-03-26 |
 
@@ -99,7 +99,7 @@ This section refreshes automatically based on recent repository activity.
 These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services.
 
 <p align="center">
-  <img src="./assets/generated/profile-snapshot.png?v=1853ca8553e5" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
+  <img src="./assets/generated/profile-snapshot.png?v=a359f4a7bb8d" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
 </p>
 
 ## ✨ What You Will Find Here / 这里会看到什么

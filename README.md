@@ -99,7 +99,7 @@ This section refreshes automatically based on recent repository activity.
 These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services.
 
 <p align="center">
-  <img src="./assets/generated/profile-snapshot.png?v=ad4cd8972259" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
+  <img src="./assets/generated/profile-snapshot.png?v=59c7a786cb66" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
 </p>
 
 ## ✨ What You Will Find Here / 这里会看到什么

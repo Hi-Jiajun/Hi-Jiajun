@@ -44,7 +44,7 @@ These repositories are the closest to my own work or direct maintenance.
 
 | Project | Description / 说明 | Activity |
 | --- | --- | --- |
-| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程 | Python · ⭐ 2 · updated 2026-04-19 |
+| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程 | Python · ⭐ 2 · updated 2026-04-20 |
 | [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库 | C · ⭐ 2 · updated 2026-04-04 |
 
 ## 🤝 Forks, References, Contributions / Fork、参考与贡献
@@ -67,7 +67,7 @@ This section refreshes automatically based on recent repository activity.
 
 | Repository | Status |
 | --- | --- |
-| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | 🛠️ Original · Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程<br/>updated 2026-04-19 |
+| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | 🛠️ Original · Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程<br/>updated 2026-04-20 |
 | [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | 🛠️ Original · Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库<br/>updated 2026-04-04 |
 | [pua](https://github.com/Hi-Jiajun/pua) | 🍴 Fork · Fork for studying and adapting agent execution patterns<br/>用于研究和适配 Agent 执行模式的 fork<br/>updated 2026-03-31 |
 | [openclaw](https://github.com/Hi-Jiajun/openclaw) | 🍴 Fork · Upstream project I use and study in AI workflow setups<br/>我在 AI 工作流实践里会使用和研究的上游项目<br/>updated 2026-03-29 |

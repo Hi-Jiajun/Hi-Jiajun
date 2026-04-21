@@ -109,9 +109,6 @@ toolbox:
 
 projects:
   original:
-    - repo: "CN-Domain-Rule-Auto-Generator"
-      note_en: "Automated generation pipeline for China mainland direct-connect domain rules"
-      note_zh: "中国大陆直连域名规则的自动生成流程"
     - repo: "vpp-pppoeclient"
       note_en: "Standalone repository for a VPP PPPoE client plugin extracted from my branch work"
       note_zh: "从我的分支工作中拆出的 VPP PPPoE Client 独立仓库"

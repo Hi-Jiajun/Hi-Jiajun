@@ -71,3 +71,18 @@ projects:
     - repo: "openclaw"
       note_en: "Upstream project I use and study in AI workflow setups"
       note_zh: "我在 AI 工作流实践里会使用和研究的上游项目"
+
+sponsor:
+  methods:
+    - slug: "wechat"
+      name_zh: "微信"
+      name_en: "WeChat"
+      brand_color: "07C160"
+      brand_color_dark: "2FE18D"
+      qr_url: "https://Hi-Jiajun.github.io/picx-images-hosting/wechat_qrcode.icohq9bcf.webp"
+    - slug: "alipay"
+      name_zh: "支付宝"
+      name_en: "Alipay"
+      brand_color: "1677FF"
+      brand_color_dark: "4A96FF"
+      qr_url: "https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp"

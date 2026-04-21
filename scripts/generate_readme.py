@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
@@ -29,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
     parser.add_argument("--cards-dir", default="assets/generated/cards")
+    parser.add_argument("--sponsors-dir", default="assets/generated/sponsors")
     return parser.parse_args()
 
 
@@ -222,6 +224,79 @@ def prune_stale_cards(cards_dir: Path, expected_names: set[str]) -> None:
             existing.unlink()
 
 
+MIME_BY_EXT = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif"}
+
+
+def fetch_qr_image(url: str) -> tuple[bytes, str]:
+    req = request.Request(
+        url,
+        headers={"User-Agent": "Hi-Jiajun-profile-readme-generator"},
+    )
+    with request.urlopen(req) as response:
+        body = response.read()
+        content_type = response.headers.get_content_type() or ""
+    if not content_type.startswith("image/"):
+        ext = Path(parse.urlparse(url).path).suffix.lower()
+        content_type = MIME_BY_EXT.get(ext, "application/octet-stream")
+    return body, content_type
+
+
+def render_sponsor_card_svg(
+    name_zh: str,
+    name_en: str,
+    brand_color: str,
+    brand_color_dark: str,
+    qr_bytes: bytes,
+    qr_mime: str,
+) -> str:
+    b64 = base64.b64encode(qr_bytes).decode("ascii")
+    label = f"{name_zh} · {name_en}"
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="{escape(name_en)} QR code">
+  <style>
+    .card {{ fill: #ffffff; stroke: #e2e8f0; }}
+    .title {{ fill: #{brand_color}; font-weight: 700; }}
+    @media (prefers-color-scheme: dark) {{
+      .card {{ fill: #0D1B2A; stroke: #184B54; }}
+      .title {{ fill: #{brand_color_dark}; }}
+    }}
+  </style>
+  <rect class="card" x="0.5" y="0.5" width="259" height="319" rx="16" stroke-width="1" />
+  <image href="data:{qr_mime};base64,{b64}" x="20" y="30" width="220" height="220" preserveAspectRatio="xMidYMid meet" />
+  <text x="130" y="290" class="title" text-anchor="middle" font-family="{CARD_FONT_FAMILY}" font-size="18">{escape(label)}</text>
+</svg>
+'''
+
+
+def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) -> str:
+    cells: list[str] = []
+    expected: set[str] = set()
+    for method in methods:
+        slug = method["slug"]
+        expected.add(slug)
+        qr_bytes, qr_mime = fetch_qr_image(method["qr_url"])
+        svg = render_sponsor_card_svg(
+            name_zh=method["name_zh"],
+            name_en=method["name_en"],
+            brand_color=method["brand_color"],
+            brand_color_dark=method.get("brand_color_dark", method["brand_color"]),
+            qr_bytes=qr_bytes,
+            qr_mime=qr_mime,
+        )
+        card_path = sponsors_dir / f"{slug}.svg"
+        card_hash = write_if_changed(card_path, svg)
+        img_src = f"./{card_path.as_posix()}?v={card_hash}"
+        cells.append(
+            f'<td align="center" width="50%"><img src="{img_src}" alt="{escape(method["name_en"])} sponsor QR" /></td>'
+        )
+
+    if sponsors_dir.exists():
+        for existing in sponsors_dir.glob("*.svg"):
+            if existing.stem not in expected:
+                existing.unlink()
+
+    return "<table>\n  <tr>\n    " + "\n    ".join(cells) + "\n  </tr>\n</table>"
+
+
 def render_template(template_text: str, values: dict[str, str]) -> str:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
@@ -238,6 +313,7 @@ def main() -> int:
     template_path = Path(args.template)
     output_path = Path(args.output)
     cards_dir = Path(args.cards_dir)
+    sponsors_dir = Path(args.sponsors_dir)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -270,6 +346,7 @@ def main() -> int:
             config["projects"]["forks"], repo_map, cards_dir, username, "🍴 FORK"
         ),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
+        "SPONSOR_CARDS": render_sponsor_section(config["sponsor"]["methods"], sponsors_dir),
         "FOOTER_ZH": config["profile"]["footer_zh"],
         "FOOTER_EN": config["profile"]["footer_en"],
     }

@@ -13,6 +13,7 @@ on:
       - scripts/generate_readme.py
       - scripts/requirements.txt
       - assets/profile-banner.svg
+      - assets/profile-banner-light.svg
       - .github/workflows/update-profile.yml
 
 permissions:
@@ -51,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/generated/profile-snapshot.png
+          git add -A README.md assets/generated
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

@@ -1,82 +1,60 @@
 <div align="center">
-  <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
 
-  <h1>{{ HEADER_TITLE }}</h1>
-  <p>{{ HEADER_ROLE }}</p>
-  <p>
-    {{ HEADER_INTRO_ZH }}<br/>
-    {{ HEADER_INTRO_EN }}
-  </p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-banner.svg" />
+  <img src="./assets/profile-banner-light.svg" alt="Hi-Jiajun profile banner" />
+</picture>
+
+<h1>{{ HEADER_TITLE }}</h1>
+
+<p>🧑‍💻 {{ HEADER_ROLE_ZH }} · <sub>{{ HEADER_ROLE_EN }}</sub></p>
+
+<p>
+  {{ HEADER_INTRO_ZH }}<br/>
+  <sub>{{ HEADER_INTRO_EN }}</sub>
+</p>
+
 </div>
 
 > {{ OWNERSHIP_NOTE_ZH }}  
-> {{ OWNERSHIP_NOTE_EN }}
+> <sub>{{ OWNERSHIP_NOTE_EN }}</sub>
 
-## 👀 About / 关于我
-
-{{ ABOUT_INTRO_ZH }}  
-{{ ABOUT_INTRO_EN }}
+## 关于 <sub>About</sub>
 
 {{ ABOUT_ITEMS }}
 
-## 🔭 Current Focus / 目前关注
+## 🚀 原创 <sub>Original Work</sub>
 
-{{ FOCUS_ITEMS }}
+{{ ORIGINAL_CARDS }}
 
-## 🚀 Original Work / 原创项目
+## 🤝 Fork · 参考 <sub>Forks &amp; References</sub>
 
-{{ ORIGINAL_INTRO_ZH }}  
-{{ ORIGINAL_INTRO_EN }}
+{{ FORK_CARDS }}
 
-| Project | Description / 说明 | Activity |
-| --- | --- | --- |
-{{ ORIGINAL_ROWS }}
-
-## 🤝 Forks, References, Contributions / Fork、参考与贡献
-
-{{ FORKS_INTRO_ZH }}  
-{{ FORKS_INTRO_ZH_EXTRA }}  
-{{ FORKS_INTRO_EN }}
-
-| Project | Why it is here / 为什么会放在这里 | Activity |
-| --- | --- | --- |
-{{ FORK_ROWS }}
-
-## 📈 Recently Active / 最近活跃
-
-{{ RECENT_INTRO_ZH }}  
-{{ RECENT_INTRO_EN }}
-
-| Repository | Status |
-| --- | --- |
-{{ RECENT_ROWS }}
-
-## 🧭 How I Work / 做事方式
-
-{{ WORK_ITEMS }}
-
-## 🧰 Toolbox / 常用技术
+## 🧰 技术 <sub>Stack</sub>
 
 <p>
 {{ TOOLBOX_BADGES }}
 </p>
 
-## 📊 Snapshot / GitHub 概览
-
-{{ SNAPSHOT_INTRO_ZH }}  
-{{ SNAPSHOT_INTRO_EN }}
+## 📊 数据 <sub>Stats</sub>
 
 <p align="center">
-  <img src="{{ SNAPSHOT_IMAGE_URL }}" alt="Auto-generated GitHub snapshot for {{ USERNAME }}" />
+  <img src="https://github-readme-stats.vercel.app/api?username={{ USERNAME }}&amp;show_icons=true&amp;include_all_commits=true&amp;count_private=false&amp;hide_border=true&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;icon_color=2DD4BF" alt="GitHub stats" height="180" />
+  <img src="https://streak-stats.demolab.com/?user={{ USERNAME }}&amp;hide_border=true&amp;background=0D1B2A&amp;stroke=184B54&amp;ring=38BDF8&amp;fire=F59E0B&amp;currStreakLabel=38BDF8&amp;currStreakNum=F8FAFC&amp;sideNums=F8FAFC&amp;sideLabels=D4E7F5&amp;dates=8DD4FF" alt="GitHub streak" height="180" />
 </p>
 
-## ✨ What You Will Find Here / 这里会看到什么
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username={{ USERNAME }}&amp;hide_border=true&amp;bg_color=0D1B2A&amp;color=F8FAFC&amp;title_color=38BDF8&amp;line=38BDF8&amp;point=2DD4BF&amp;area=true&amp;area_color=38BDF8" alt="Activity graph" />
+</p>
 
-{{ FIND_HERE_ITEMS }}
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ USERNAME }}&amp;layout=compact&amp;hide_border=true&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;langs_count=8" alt="Top languages" />
+</p>
 
 ---
 
 <p align="center">
   {{ FOOTER_ZH }}<br/>
-  {{ FOOTER_EN }}
+  <sub>{{ FOOTER_EN }}</sub>
 </p>

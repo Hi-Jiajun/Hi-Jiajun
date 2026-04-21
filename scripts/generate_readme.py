@@ -1,30 +1,26 @@
 from __future__ import annotations
 
 import argparse
-import io
+import hashlib
 import json
 import os
 import re
 import sys
-import hashlib
-from html import escape
 from datetime import datetime, timezone
+from html import escape
 from pathlib import Path
 from typing import Any
 from urllib import parse, request
 from urllib.error import HTTPError
-from collections import Counter
 
 import yaml
-from PIL import Image, ImageDraw, ImageFont
-
-
-AUTO_GENERATED_NOTICE = (
-    "<!-- AUTO-GENERATED FROM README.template.md AND profile-data.yml. DO NOT EDIT DIRECTLY. -->\n"
-)
 
 
 PLACEHOLDER_PATTERN = re.compile(r"{{\s*([A-Z0-9_]+)\s*}}")
+AUTO_GENERATED_NOTICE = (
+    "<!-- AUTO-GENERATED FROM README.template.md AND profile-data.yml. DO NOT EDIT DIRECTLY. -->\n"
+)
+CARD_FONT_FAMILY = "Segoe UI, Helvetica Neue, Arial, sans-serif"
 
 
 def parse_args() -> argparse.Namespace:
@@ -32,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="profile-data.yml")
     parser.add_argument("--template", default="README.template.md")
     parser.add_argument("--output", default="README.md")
-    parser.add_argument("--snapshot-png", default="assets/generated/profile-snapshot.png")
+    parser.add_argument("--cards-dir", default="assets/generated/cards")
     return parser.parse_args()
 
 
@@ -88,10 +84,6 @@ def fetch_repositories(username: str, token: str | None = None) -> list[dict[str
     return repos
 
 
-def escape_cell(value: str) -> str:
-    return value.replace("|", "\\|").replace("\n", "<br/>")
-
-
 def format_date(value: str | None) -> str:
     if not value:
         return "-"
@@ -99,13 +91,10 @@ def format_date(value: str | None) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%d")
 
 
-def format_list(items: list[dict[str, str]]) -> str:
+def format_about(items: list[dict[str, str]]) -> str:
     lines = []
     for item in items:
-        icon = item["icon"]
-        en = item["en"]
-        zh = item["zh"]
-        lines.append(f"- {icon} {en} / {zh}")
+        lines.append(f"- {item['icon']} {item['zh']}<br/>\n  <sub>{item['en']}</sub>")
     return "\n".join(lines)
 
 
@@ -115,192 +104,122 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
         label = parse.quote(item["label"])
         message = parse.quote(item["message"])
         color = item["color"]
-        alt = escape_cell(item["label"])
+        params = ["labelColor=0D1B2A", "style=for-the-badge"]
+        logo = item.get("logo")
+        if logo:
+            params.append(f"logo={parse.quote(logo)}")
+            logo_color = item.get("logo_color") or "F8FAFC"
+            params.append(f"logoColor={logo_color}")
+        query = "&".join(params)
+        alt = escape(item["label"])
         badges.append(
-            f'  <img src="https://img.shields.io/badge/{label}-{message}-{color}?style=flat-square" alt="{alt}" />'
+            f'  <img src="https://img.shields.io/badge/{label}-{message}-{color}?{query}" alt="{alt}" />'
         )
     return "\n".join(badges)
 
 
-def format_activity(repo: dict[str, Any]) -> str:
-    language = repo.get("language") or "—"
-    stars = repo.get("stargazers_count", 0)
-    pushed = format_date(repo.get("pushed_at") or repo.get("updated_at"))
-    return escape_cell(f"{language} · ⭐ {stars} · updated {pushed}")
+def truncate(text: str, max_len: int) -> str:
+    if len(text) <= max_len:
+        return text
+    return text[: max_len - 1].rstrip() + "…"
 
 
-def build_project_rows(
+def render_card_svg(
+    repo_name: str,
+    category_label: str,
+    note_zh: str,
+    note_en: str,
+    language: str,
+    stars: int,
+    pushed: str,
+) -> str:
+    title = truncate(repo_name, 32)
+    zh = truncate(note_zh, 28)
+    en = truncate(note_en, 66)
+    stats = f"⭐ {stars} · updated {pushed}"
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" width="440" height="140" role="img" aria-label="{escape(repo_name)}">
+  <style>
+    .card {{ fill: #ffffff; stroke: #e2e8f0; }}
+    .tag {{ fill: #0284c7; font-weight: 700; letter-spacing: 1.5px; }}
+    .title {{ fill: #0f172a; font-weight: 700; }}
+    .note-zh {{ fill: #334155; }}
+    .note-en {{ fill: #94a3b8; }}
+    .stats {{ fill: #475569; }}
+    @media (prefers-color-scheme: dark) {{
+      .card {{ fill: #0D1B2A; stroke: #184B54; }}
+      .tag {{ fill: #38BDF8; }}
+      .title {{ fill: #F8FAFC; }}
+      .note-zh {{ fill: #D4E7F5; }}
+      .note-en {{ fill: #8DD4FF; }}
+      .stats {{ fill: #C7DCEF; }}
+    }}
+  </style>
+  <rect class="card" x="0.5" y="0.5" width="439" height="139" rx="16" stroke-width="1" />
+  <text x="18" y="28" class="tag" font-family="{CARD_FONT_FAMILY}" font-size="12">{escape(category_label)}</text>
+  <text x="422" y="28" class="stats" font-family="{CARD_FONT_FAMILY}" font-size="12" text-anchor="end">{escape(language)}</text>
+  <text x="18" y="58" class="title" font-family="{CARD_FONT_FAMILY}" font-size="20">{escape(title)}</text>
+  <text x="18" y="82" class="note-zh" font-family="{CARD_FONT_FAMILY}" font-size="13">{escape(zh)}</text>
+  <text x="18" y="100" class="note-en" font-family="{CARD_FONT_FAMILY}" font-size="11">{escape(en)}</text>
+  <text x="18" y="122" class="stats" font-family="{CARD_FONT_FAMILY}" font-size="11">{escape(stats)}</text>
+</svg>
+'''
+
+
+def write_if_changed(path: Path, content: str) -> str:
+    new_bytes = content.encode("utf-8")
+    digest = hashlib.sha256(new_bytes).hexdigest()[:12]
+    if path.exists() and path.read_bytes() == new_bytes:
+        return digest
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(new_bytes)
+    return digest
+
+
+def render_project_section(
     entries: list[dict[str, str]],
     repo_map: dict[str, dict[str, Any]],
+    cards_dir: Path,
     username: str,
+    category_label: str,
 ) -> str:
-    rows = []
+    cells: list[str] = []
     for entry in entries:
         repo_name = entry["repo"]
         repo = repo_map.get(repo_name)
         repo_url = repo["html_url"] if repo else f"https://github.com/{username}/{repo_name}"
-        note = f'{entry["note_en"]}<br/>{entry["note_zh"]}'
-        activity = format_activity(repo) if repo else "Unknown · ⭐ 0 · updated -"
-        rows.append(
-            f'| [{escape_cell(repo_name)}]({repo_url}) | {escape_cell(note)} | {escape_cell(activity)} |'
+        language = (repo.get("language") if repo else None) or "—"
+        stars = int(repo.get("stargazers_count", 0)) if repo else 0
+        pushed = format_date(repo.get("pushed_at") if repo else None)
+
+        svg = render_card_svg(
+            repo_name=repo_name,
+            category_label=category_label,
+            note_zh=entry["note_zh"],
+            note_en=entry["note_en"],
+            language=language,
+            stars=stars,
+            pushed=pushed,
         )
-    return "\n".join(rows)
-
-
-def build_recent_rows(
-    config: dict[str, Any],
-    repo_map: dict[str, dict[str, Any]],
-    username: str,
-) -> str:
-    tracked_entries = []
-    categories = [
-        ("🛠️ Original", config["projects"]["original"]),
-        ("🍴 Fork", config["projects"]["forks"]),
-    ]
-
-    for category_label, entries in categories:
-        for entry in entries:
-            repo_name = entry["repo"]
-            repo = repo_map.get(repo_name)
-            pushed_at = repo.get("pushed_at") if repo else None
-            tracked_entries.append((pushed_at or "", category_label, entry, repo))
-
-    tracked_entries.sort(key=lambda item: item[0], reverse=True)
-    limit = int(config.get("recent_activity", {}).get("limit", 5))
+        card_path = cards_dir / f"{repo_name}.svg"
+        card_hash = write_if_changed(card_path, svg)
+        img_src = f"./{card_path.as_posix()}?v={card_hash}"
+        cells.append(
+            f'<td><a href="{escape(repo_url)}"><img src="{img_src}" alt="{escape(repo_name)}" /></a></td>'
+        )
 
     rows = []
-    for _pushed_at, category_label, entry, repo in tracked_entries[:limit]:
-        repo_name = entry["repo"]
-        repo_url = repo["html_url"] if repo else f"https://github.com/{username}/{repo_name}"
-        pushed = format_date(repo.get("pushed_at") if repo else None)
-        note = f'{category_label} · {entry["note_en"]}<br/>{entry["note_zh"]}<br/>updated {pushed}'
-        rows.append(f'| [{escape_cell(repo_name)}]({repo_url}) | {escape_cell(note)} |')
-    return "\n".join(rows)
+    for i in range(0, len(cells), 2):
+        pair = cells[i : i + 2]
+        rows.append("  <tr>\n    " + "\n    ".join(pair) + "\n  </tr>")
+    return "<table>\n" + "\n".join(rows) + "\n</table>"
 
 
-def collect_top_languages(repos: list[dict[str, Any]], limit: int = 5) -> list[tuple[str, int]]:
-    counter: Counter[str] = Counter()
-    for repo in repos:
-        language = repo.get("language")
-        if language:
-            counter[language] += 1
-    return counter.most_common(limit)
-
-
-def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    candidates = []
-    if bold:
-        candidates.extend(
-            [
-                "C:/Windows/Fonts/segoeuib.ttf",
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-                "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf",
-            ]
-        )
-    else:
-        candidates.extend(
-            [
-                "C:/Windows/Fonts/segoeui.ttf",
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-                "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
-            ]
-        )
-
-    for candidate in candidates:
-        if Path(candidate).exists():
-            try:
-                return ImageFont.truetype(candidate, size=size)
-            except OSError:
-                continue
-    return ImageFont.load_default()
-
-
-def write_snapshot_png(snapshot_path: Path, username: str, repos: list[dict[str, Any]], config: dict[str, Any]) -> str:
-    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
-
-    width, height = 1280, 460
-    image = Image.new("RGBA", (width, height), (8, 18, 31, 255))
-    draw = ImageDraw.Draw(image, "RGBA")
-
-    title_font = load_font(42, bold=True)
-    label_font = load_font(18, bold=True)
-    stat_value_font = load_font(36, bold=True)
-    stat_label_font = load_font(16, bold=False)
-    small_font = load_font(14, bold=False)
-
-    for x in range(width):
-        blend = x / max(width - 1, 1)
-        r = int(8 + (18 - 8) * blend)
-        g = int(18 + (75 - 18) * blend)
-        b = int(31 + (87 - 31) * blend)
-        draw.line([(x, 0), (x, height)], fill=(r, g, b, 255))
-
-    draw.rounded_rectangle((8, 8, width - 8, height - 8), radius=30, outline=(255, 255, 255, 24), width=1)
-    draw.ellipse((905, 40, 1190, 260), fill=(56, 189, 248, 14))
-    draw.ellipse((780, 220, 1050, 430), fill=(45, 212, 191, 10))
-
-    public_repo_count = len(repos)
-    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
-    original_tracked = len(config["projects"]["original"])
-    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
-
-    draw.text((72, 58), "SNAPSHOT / AUTO-GENERATED", font=label_font, fill="#8DD4FF")
-    draw.text((72, 102), "GitHub snapshot", font=title_font, fill="#F8FAFC")
-    draw.text((72, 154), "A compact view of repositories, tracked work, and language mix", font=stat_label_font, fill="#D4E7F5")
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    draw.text((1160, 62), f"{today} UTC", font=small_font, fill="#B7D1E6", anchor="ra")
-
-    cards = [
-        ("Public repos", str(public_repo_count), "#38bdf8"),
-        ("Fork repos", str(fork_repo_count), "#60a5fa"),
-        ("Original work", str(original_tracked), "#2dd4bf"),
-        ("Total stars", str(total_stars), "#f59e0b"),
-    ]
-
-    card_positions = [
-        (72, 214),
-        (336, 214),
-        (72, 336),
-        (336, 336),
-    ]
-    for (label, value, color), (x0, y0) in zip(cards, card_positions):
-        x1 = x0 + 224
-        y1 = y0 + 92
-        draw.rounded_rectangle((x0, y0, x1, y1), radius=22, fill=(16, 30, 50, 218), outline=(255, 255, 255, 24), width=1)
-        draw.rounded_rectangle((x0 + 18, y0 + 18, x0 + 68, y0 + 24), radius=3, fill=color)
-        draw.text((x0 + 18, y0 + 34), value, font=stat_value_font, fill="#F8FAFC")
-        draw.text((x0 + 18, y0 + 72), label, font=stat_label_font, fill="#C7DCEF")
-
-    panel_x0, panel_y0, panel_x1, panel_y1 = 636, 214, 1200, 436
-    draw.rounded_rectangle((panel_x0, panel_y0, panel_x1, panel_y1), radius=24, fill=(13, 28, 44, 210), outline=(255, 255, 255, 22), width=1)
-    draw.text((664, 258), "TOP LANGUAGES", font=label_font, fill="#8DD4FF")
-
-    top_languages = collect_top_languages(repos, limit=4)
-    max_count = max((count for _language, count in top_languages), default=1)
-    palette = ["#38bdf8", "#2dd4bf", "#f59e0b", "#a78bfa", "#f472b6"]
-
-    for index, (language, count) in enumerate(top_languages):
-        y = 294 + index * 34
-        bar_y = y + 20
-        bar_width = 476
-        fill_width = bar_width if max_count == 0 else round((count / max_count) * bar_width)
-        color = palette[index % len(palette)]
-
-        draw.text((664, y), language, font=stat_label_font, fill="#F8FAFC")
-        draw.text((1168, y), f"{count} repos", font=small_font, fill="#C7DCEF", anchor="ra")
-        draw.rounded_rectangle((664, bar_y, 664 + bar_width, bar_y + 10), radius=5, fill=(255, 255, 255, 18))
-        draw.rounded_rectangle((664, bar_y, 664 + fill_width, bar_y + 10), radius=5, fill=color)
-
-    image = image.convert("RGB")
-    buffer = io.BytesIO()
-    image.save(buffer, format="PNG", optimize=True)
-    new_bytes = buffer.getvalue()
-
-    if snapshot_path.exists() and snapshot_path.read_bytes() == new_bytes:
-        return hashlib.sha256(new_bytes).hexdigest()[:12]
-
-    snapshot_path.write_bytes(new_bytes)
-    return hashlib.sha256(new_bytes).hexdigest()[:12]
+def prune_stale_cards(cards_dir: Path, expected_names: set[str]) -> None:
+    if not cards_dir.exists():
+        return
+    for existing in cards_dir.glob("*.svg"):
+        if existing.stem not in expected_names:
+            existing.unlink()
 
 
 def render_template(template_text: str, values: dict[str, str]) -> str:
@@ -318,7 +237,7 @@ def main() -> int:
     config_path = Path(args.config)
     template_path = Path(args.template)
     output_path = Path(args.output)
-    snapshot_png_path = Path(args.snapshot_png)
+    cards_dir = Path(args.cards_dir)
 
     config = load_yaml(config_path)
     with template_path.open("r", encoding="utf-8") as fh:
@@ -329,36 +248,28 @@ def main() -> int:
     repos = fetch_repositories(username, token=token)
     repo_map = {repo["name"]: repo for repo in repos}
 
-    snapshot_hash = write_snapshot_png(snapshot_png_path, username, repos, config)
+    expected_card_names: set[str] = {
+        entry["repo"] for entry in config["projects"]["original"]
+    } | {entry["repo"] for entry in config["projects"]["forks"]}
+    prune_stale_cards(cards_dir, expected_card_names)
 
     values = {
         "USERNAME": username,
-        "SNAPSHOT_IMAGE_URL": f"./assets/generated/profile-snapshot.png?v={snapshot_hash}",
         "HEADER_TITLE": config["profile"]["header_title"],
-        "HEADER_ROLE": config["profile"]["header_role"],
+        "HEADER_ROLE_ZH": config["profile"]["header_role_zh"],
+        "HEADER_ROLE_EN": config["profile"]["header_role_en"],
         "HEADER_INTRO_ZH": config["profile"]["header_intro_zh"],
         "HEADER_INTRO_EN": config["profile"]["header_intro_en"],
         "OWNERSHIP_NOTE_ZH": config["profile"]["ownership_note_zh"],
         "OWNERSHIP_NOTE_EN": config["profile"]["ownership_note_en"],
-        "ABOUT_INTRO_ZH": config["section_copy"]["about_intro_zh"],
-        "ABOUT_INTRO_EN": config["section_copy"]["about_intro_en"],
-        "ABOUT_ITEMS": format_list(config["about"]),
-        "FOCUS_ITEMS": format_list(config["current_focus"]),
-        "ORIGINAL_INTRO_ZH": config["section_copy"]["original_intro_zh"],
-        "ORIGINAL_INTRO_EN": config["section_copy"]["original_intro_en"],
-        "ORIGINAL_ROWS": build_project_rows(config["projects"]["original"], repo_map, username),
-        "FORKS_INTRO_ZH": config["section_copy"]["forks_intro_zh"],
-        "FORKS_INTRO_ZH_EXTRA": config["section_copy"]["forks_intro_zh_extra"],
-        "FORKS_INTRO_EN": config["section_copy"]["forks_intro_en"],
-        "FORK_ROWS": build_project_rows(config["projects"]["forks"], repo_map, username),
-        "RECENT_INTRO_ZH": config["section_copy"]["recent_intro_zh"],
-        "RECENT_INTRO_EN": config["section_copy"]["recent_intro_en"],
-        "RECENT_ROWS": build_recent_rows(config, repo_map, username),
-        "SNAPSHOT_INTRO_ZH": config["section_copy"]["snapshot_intro_zh"],
-        "SNAPSHOT_INTRO_EN": config["section_copy"]["snapshot_intro_en"],
-        "WORK_ITEMS": format_list(config["how_i_work"]),
+        "ABOUT_ITEMS": format_about(config["about"]),
+        "ORIGINAL_CARDS": render_project_section(
+            config["projects"]["original"], repo_map, cards_dir, username, "🛠 ORIGINAL"
+        ),
+        "FORK_CARDS": render_project_section(
+            config["projects"]["forks"], repo_map, cards_dir, username, "🍴 FORK"
+        ),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
-        "FIND_HERE_ITEMS": format_list(config["find_here"]),
         "FOOTER_ZH": config["profile"]["footer_zh"],
         "FOOTER_EN": config["profile"]["footer_en"],
     }

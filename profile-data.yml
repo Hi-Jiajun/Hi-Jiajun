@@ -131,17 +131,3 @@ projects:
 
 recent_activity:
   limit: 5
-
-focus_strip:
-  - label: "AUTOMATION"
-    detail_en: "daily workflow scripts"
-    detail_zh: "日常工作流脚本"
-    color: "#38bdf8"
-  - label: "AI WORKFLOWS"
-    detail_en: "agent tooling and experiments"
-    detail_zh: "Agent 工具与实验"
-    color: "#2dd4bf"
-  - label: "NETWORKING"
-    detail_en: "routing and domain rules"
-    detail_zh: "路由与域名规则"
-    color: "#f59e0b"

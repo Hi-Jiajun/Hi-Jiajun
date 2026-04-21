@@ -1,10 +1,3 @@
-<!--
-This file is the source template for README.md.
-Do not edit README.md directly; update this template or profile-data.yml instead.
--->
-
-<!-- AUTO-GENERATED FILE: edit README.template.md and profile-data.yml -->
-
 <div align="center">
   <img src="./assets/profile-banner.svg" alt="Hi-Jiajun profile banner" />
 

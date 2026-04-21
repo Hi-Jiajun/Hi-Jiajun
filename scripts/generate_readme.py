@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import os
 import re
@@ -11,10 +12,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib import parse, request
+from urllib.error import HTTPError
 from collections import Counter
 
 import yaml
 from PIL import Image, ImageDraw, ImageFont
+
+
+AUTO_GENERATED_NOTICE = (
+    "<!-- AUTO-GENERATED FROM README.template.md AND profile-data.yml. DO NOT EDIT DIRECTLY. -->\n"
+)
 
 
 PLACEHOLDER_PATTERN = re.compile(r"{{\s*([A-Z0-9_]+)\s*}}")
@@ -47,9 +54,16 @@ def github_request(url: str, token: str | None = None) -> tuple[Any, dict[str, s
         headers["Authorization"] = f"Bearer {token}"
 
     req = request.Request(url, headers=headers)
-    with request.urlopen(req) as response:
-        body = response.read().decode("utf-8")
-        header_map = {k: v for k, v in response.headers.items()}
+    try:
+        with request.urlopen(req) as response:
+            body = response.read().decode("utf-8")
+            header_map = {k: v for k, v in response.headers.items()}
+    except HTTPError as exc:
+        exc_headers = exc.headers or {}
+        remaining = exc_headers.get("X-RateLimit-Remaining")
+        reset = exc_headers.get("X-RateLimit-Reset")
+        detail = f" (rate limit remaining={remaining}, reset={reset})" if remaining is not None else ""
+        raise RuntimeError(f"GitHub API {exc.code} on {url}{detail}: {exc.reason}") from exc
     return json.loads(body), header_map
 
 
@@ -65,8 +79,7 @@ def fetch_repositories(username: str, token: str | None = None) -> list[dict[str
         if not isinstance(data, list):
             raise RuntimeError(f"Unexpected GitHub API response: {data}")
 
-        public_repos = [repo for repo in data if not repo.get("private", False)]
-        repos.extend(public_repos)
+        repos.extend(data)
 
         if len(data) < 100:
             break
@@ -110,7 +123,7 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
 
 
 def format_activity(repo: dict[str, Any]) -> str:
-    language = repo.get("language") or "Mixed"
+    language = repo.get("language") or "—"
     stars = repo.get("stargazers_count", 0)
     pushed = format_date(repo.get("pushed_at") or repo.get("updated_at"))
     return escape_cell(f"{language} · ⭐ {stars} · updated {pushed}")
@@ -163,44 +176,6 @@ def build_recent_rows(
         note = f'{category_label} · {entry["note_en"]}<br/>{entry["note_zh"]}<br/>updated {pushed}'
         rows.append(f'| [{escape_cell(repo_name)}]({repo_url}) | {escape_cell(note)} |')
     return "\n".join(rows)
-
-
-def build_snapshot_rows(
-    repos: list[dict[str, Any]],
-    config: dict[str, Any],
-) -> str:
-    public_repo_count = len(repos)
-    fork_repo_count = sum(1 for repo in repos if repo.get("fork"))
-    original_tracked = len(config["projects"]["original"])
-    fork_tracked = len(config["projects"]["forks"])
-    total_stars = sum(int(repo.get("stargazers_count", 0)) for repo in repos)
-    active_limit = int(config.get("recent_activity", {}).get("limit", 5))
-
-    metrics = [
-        ("📦 Public repositories / 公开仓库", str(public_repo_count)),
-        ("🍴 Fork repositories / Fork 仓库", str(fork_repo_count)),
-        ("🛠️ Tracked original projects / 跟踪的原创项目", str(original_tracked)),
-        ("🤝 Tracked forks & references / 跟踪的 fork 与参考项目", str(fork_tracked)),
-        ("⭐ Total stars received / 获得的总 Star", str(total_stars)),
-        ("⏱️ Recently active list size / 最近活跃列表长度", str(active_limit)),
-    ]
-    return "\n".join(f"| {escape_cell(label)} | {escape_cell(value)} |" for label, value in metrics)
-
-
-def build_top_languages(repos: list[dict[str, Any]], limit: int = 6) -> str:
-    counter: Counter[str] = Counter()
-    for repo in repos:
-        language = repo.get("language")
-        if language:
-            counter[language] += 1
-
-    if not counter:
-        return "- No language data available yet / 暂时没有可用的语言数据"
-
-    lines = []
-    for language, count in counter.most_common(limit):
-        lines.append(f"- `{language}` in {count} public repos / `{language}` 出现在 {count} 个公开仓库中")
-    return "\n".join(lines)
 
 
 def collect_top_languages(repos: list[dict[str, Any]], limit: int = 5) -> list[tuple[str, int]]:
@@ -272,7 +247,8 @@ def write_snapshot_png(snapshot_path: Path, username: str, repos: list[dict[str,
     draw.text((72, 58), "SNAPSHOT / AUTO-GENERATED", font=label_font, fill="#8DD4FF")
     draw.text((72, 102), "GitHub snapshot", font=title_font, fill="#F8FAFC")
     draw.text((72, 154), "A compact view of repositories, tracked work, and language mix", font=stat_label_font, fill="#D4E7F5")
-    draw.text((1160, 62), format_date(datetime.now(timezone.utc).isoformat()) + " UTC", font=small_font, fill="#B7D1E6", anchor="ra")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    draw.text((1160, 62), f"{today} UTC", font=small_font, fill="#B7D1E6", anchor="ra")
 
     cards = [
         ("Public repos", str(public_repo_count), "#38bdf8"),
@@ -316,8 +292,15 @@ def write_snapshot_png(snapshot_path: Path, username: str, repos: list[dict[str,
         draw.rounded_rectangle((664, bar_y, 664 + fill_width, bar_y + 10), radius=5, fill=color)
 
     image = image.convert("RGB")
-    image.save(snapshot_path, format="PNG", optimize=True)
-    return hashlib.sha256(snapshot_path.read_bytes()).hexdigest()[:12]
+    buffer = io.BytesIO()
+    image.save(buffer, format="PNG", optimize=True)
+    new_bytes = buffer.getvalue()
+
+    if snapshot_path.exists() and snapshot_path.read_bytes() == new_bytes:
+        return hashlib.sha256(new_bytes).hexdigest()[:12]
+
+    snapshot_path.write_bytes(new_bytes)
+    return hashlib.sha256(new_bytes).hexdigest()[:12]
 
 
 def render_template(template_text: str, values: dict[str, str]) -> str:
@@ -373,8 +356,6 @@ def main() -> int:
         "RECENT_ROWS": build_recent_rows(config, repo_map, username),
         "SNAPSHOT_INTRO_ZH": config["section_copy"]["snapshot_intro_zh"],
         "SNAPSHOT_INTRO_EN": config["section_copy"]["snapshot_intro_en"],
-        "SNAPSHOT_ROWS": build_snapshot_rows(repos, config),
-        "TOP_LANGUAGES": build_top_languages(repos),
         "WORK_ITEMS": format_list(config["how_i_work"]),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "FIND_HERE_ITEMS": format_list(config["find_here"]),
@@ -382,7 +363,7 @@ def main() -> int:
         "FOOTER_EN": config["profile"]["footer_en"],
     }
 
-    output = render_template(template_text, values)
+    output = AUTO_GENERATED_NOTICE + render_template(template_text, values)
     with output_path.open("w", encoding="utf-8", newline="\n") as fh:
         fh.write(output.rstrip() + "\n")
 

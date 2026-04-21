@@ -39,18 +39,24 @@
 
 ## 📊 数据 <sub>Stats</sub>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username={{ USERNAME }}&amp;show_icons=true&amp;include_all_commits=true&amp;count_private=false&amp;hide_border=true&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;icon_color=2DD4BF" alt="GitHub stats" height="180" />
-  <img src="https://streak-stats.demolab.com/?user={{ USERNAME }}&amp;hide_border=true&amp;background=0D1B2A&amp;stroke=184B54&amp;ring=38BDF8&amp;fire=F59E0B&amp;currStreakLabel=38BDF8&amp;currStreakNum=F8FAFC&amp;sideNums=F8FAFC&amp;sideLabels=D4E7F5&amp;dates=8DD4FF" alt="GitHub streak" height="180" />
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username={{ USERNAME }}&amp;hide_border=true&amp;bg_color=0D1B2A&amp;color=F8FAFC&amp;title_color=38BDF8&amp;line=38BDF8&amp;point=2DD4BF&amp;area=true&amp;area_color=38BDF8" alt="Activity graph" />
-</p>
+<table>
+  <tr>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api?username={{ USERNAME }}&amp;show_icons=true&amp;include_all_commits=true&amp;count_private=false&amp;hide_border=true&amp;border_radius=16&amp;card_width=480&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;icon_color=2DD4BF" alt="GitHub stats" height="195" />
+    </td>
+    <td>
+      <img src="https://streak-stats.demolab.com/?user={{ USERNAME }}&amp;hide_border=true&amp;border_radius=16&amp;card_width=480&amp;background=0D1B2A&amp;stroke=184B54&amp;ring=38BDF8&amp;fire=F59E0B&amp;currStreakLabel=38BDF8&amp;currStreakNum=F8FAFC&amp;sideNums=F8FAFC&amp;sideLabels=D4E7F5&amp;dates=8DD4FF" alt="GitHub streak" height="195" />
+    </td>
+  </tr>
+</table>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ USERNAME }}&amp;layout=compact&amp;hide_border=true&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;langs_count=8" alt="Top languages" />
-</p>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username={{ USERNAME }}&amp;hide_border=true&amp;radius=16&amp;bg_color=0D1B2A&amp;color=F8FAFC&amp;title_color=38BDF8&amp;line=38BDF8&amp;point=2DD4BF&amp;area=true&amp;area_color=38BDF8" alt="Activity graph" width="976" />
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ USERNAME }}&amp;layout=compact&amp;hide_border=true&amp;border_radius=16&amp;card_width=976&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;langs_count=8" alt="Top languages" />
+
+</div>
 
 ---
 

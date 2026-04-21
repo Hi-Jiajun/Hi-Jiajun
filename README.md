@@ -38,7 +38,6 @@ These repositories are the closest to my own work or direct maintenance.
 
 | Project | Description / 说明 | Activity |
 | --- | --- | --- |
-| [CN-Domain-Rule-Auto-Generator](https://github.com/Hi-Jiajun/CN-Domain-Rule-Auto-Generator) | Automated generation pipeline for China mainland direct-connect domain rules<br/>中国大陆直连域名规则的自动生成流程 | Unknown · ⭐ 0 · updated - |
 | [vpp-pppoeclient](https://github.com/Hi-Jiajun/vpp-pppoeclient) | Standalone repository for a VPP PPPoE client plugin extracted from my branch work<br/>从我的分支工作中拆出的 VPP PPPoE Client 独立仓库 | C · ⭐ 2 · updated 2026-04-21 |
 
 ## 🤝 Forks, References, Contributions / Fork、参考与贡献
@@ -93,7 +92,7 @@ This section refreshes automatically based on recent repository activity.
 These numbers are generated from GitHub repository data by the local script, without relying on third-party stat image services.
 
 <p align="center">
-  <img src="./assets/generated/profile-snapshot.png?v=566aa73d3790" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
+  <img src="./assets/generated/profile-snapshot.png?v=dff0c5528e85" alt="Auto-generated GitHub snapshot for Hi-Jiajun" />
 </p>
 
 ## ✨ What You Will Find Here / 这里会看到什么

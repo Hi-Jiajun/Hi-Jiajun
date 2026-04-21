@@ -62,23 +62,27 @@
 
 <div align="center">
 
+<p>
+  ☕ 如果这些工具或脚本帮到你，欢迎请我喝杯咖啡<br/>
+  <sub>If any of these tools or scripts helped you, feel free to buy me a coffee.</sub>
+</p>
+
 <table>
   <tr>
-    <td align="center">
-      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/wechat_qrcode.icohq9bcf.webp" alt="WeChat Pay" width="220" />
+    <td align="center" width="50%">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/wechat_qrcode.icohq9bcf.webp" alt="WeChat Pay" width="200" />
       <br/>
-      <sub>微信 · WeChat</sub>
+      <br/>
+      <img src="https://img.shields.io/badge/微信-WeChat-07C160?style=for-the-badge&amp;logo=wechat&amp;logoColor=ffffff" alt="WeChat label" />
     </td>
-    <td align="center">
-      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp" alt="Alipay" width="220" />
+    <td align="center" width="50%">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp" alt="Alipay" width="200" />
       <br/>
-      <sub>支付宝 · Alipay</sub>
+      <br/>
+      <img src="https://img.shields.io/badge/支付宝-Alipay-1677FF?style=for-the-badge&amp;logo=alipay&amp;logoColor=ffffff" alt="Alipay label" />
     </td>
   </tr>
 </table>
-
-<sub>如果这些工具或脚本对你有帮助，欢迎请我喝杯咖啡 ☕</sub><br/>
-<sub>If any of these tools or scripts have helped you, feel free to buy me a coffee.</sub>
 
 </div>
 

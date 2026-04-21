@@ -58,6 +58,30 @@
 
 </div>
 
+## 💖 赞助 <sub>Sponsor</sub>
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/wechat_qrcode.icohq9bcf.webp" alt="WeChat Pay" width="220" />
+      <br/>
+      <sub>微信 · WeChat</sub>
+    </td>
+    <td align="center">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp" alt="Alipay" width="220" />
+      <br/>
+      <sub>支付宝 · Alipay</sub>
+    </td>
+  </tr>
+</table>
+
+<sub>如果这些工具或脚本对你有帮助，欢迎请我喝杯咖啡 ☕</sub><br/>
+<sub>If any of these tools or scripts have helped you, feel free to buy me a coffee.</sub>
+
+</div>
+
 ---
 
 <p align="center">

@@ -59,13 +59,13 @@
 ## 🧰 技术 <sub>Stack</sub>
 
 <p>
-  <img src="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=python&logoColor=38BDF8" alt="Python" />
-  <img src="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=nodedotjs&logoColor=2DD4BF" alt="Node.js" />
-  <img src="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=githubactions&logoColor=38BDF8" alt="GitHub Actions" />
+  <img src="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="Python" />
+  <img src="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="Node.js" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="GitHub Actions" />
   <img src="https://img.shields.io/badge/OpenClaw-workflow%20experiments-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="OpenClaw" />
   <img src="https://img.shields.io/badge/MCP-tool%20integration-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="MCP" />
   <img src="https://img.shields.io/badge/Browser%20Automation-experiments-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="Browser Automation" />
-  <img src="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=windows&logoColor=F59E0B" alt="WSL" />
+  <img src="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=for-the-badge" alt="WSL" />
 </p>
 
 ## 📊 数据 <sub>Stats</sub>
@@ -86,6 +86,30 @@
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&amp;hide_border=true&amp;radius=16&amp;bg_color=0D1B2A&amp;color=F8FAFC&amp;title_color=38BDF8&amp;line=38BDF8&amp;point=2DD4BF&amp;area=true&amp;area_color=38BDF8" alt="Activity graph" width="976" />
 
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hi-Jiajun&amp;layout=compact&amp;hide_border=true&amp;border_radius=16&amp;card_width=976&amp;bg_color=0D1B2A&amp;title_color=38BDF8&amp;text_color=F8FAFC&amp;langs_count=8" alt="Top languages" />
+
+</div>
+
+## 💖 赞助 <sub>Sponsor</sub>
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/wechat_qrcode.icohq9bcf.webp" alt="WeChat Pay" width="220" />
+      <br/>
+      <sub>微信 · WeChat</sub>
+    </td>
+    <td align="center">
+      <img src="https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp" alt="Alipay" width="220" />
+      <br/>
+      <sub>支付宝 · Alipay</sub>
+    </td>
+  </tr>
+</table>
+
+<sub>如果这些工具或脚本对你有帮助，欢迎请我喝杯咖啡 ☕</sub><br/>
+<sub>If any of these tools or scripts have helped you, feel free to buy me a coffee.</sub>
 
 </div>
 

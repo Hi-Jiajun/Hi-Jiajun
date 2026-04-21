@@ -34,18 +34,12 @@ toolbox:
   - label: "Python"
     message: "tooling"
     color: "0D1B2A"
-    logo: "python"
-    logo_color: "38BDF8"
   - label: "Node.js"
     message: "scripts"
     color: "0D1B2A"
-    logo: "nodedotjs"
-    logo_color: "2DD4BF"
   - label: "GitHub Actions"
     message: "automation"
     color: "0D1B2A"
-    logo: "githubactions"
-    logo_color: "38BDF8"
   - label: "OpenClaw"
     message: "workflow experiments"
     color: "0D1B2A"
@@ -58,8 +52,6 @@ toolbox:
   - label: "WSL"
     message: "windows workflows"
     color: "0D1B2A"
-    logo: "windows"
-    logo_color: "F59E0B"
 
 projects:
   original:

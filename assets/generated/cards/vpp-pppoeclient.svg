@@ -17,7 +17,7 @@
   </style>
   <rect class="card" x="0.5" y="0.5" width="439" height="139" rx="16" stroke-width="1" />
   <text x="18" y="28" class="tag" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12">🛠 ORIGINAL</text>
-  <text x="422" y="28" class="stats" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" text-anchor="end">C</text>
+  <text x="422" y="28" class="stats" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" text-anchor="end">Shell</text>
   <text x="18" y="58" class="title" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20">vpp-pppoeclient</text>
   <text x="18" y="82" class="note-zh" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13">从我的分支工作中拆出的 VPP PPPoE Clien…</text>
   <text x="18" y="100" class="note-en" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11">Standalone repository for a VPP PPPoE client plugin extracted fro…</text>

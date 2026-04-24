@@ -48,11 +48,7 @@
 <table>
   <tr>
     <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=a09b1c52c50c" alt="memory-lancedb-pro" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/pua"><img src="./assets/generated/cards/pua.svg?v=534d63688fed" alt="pua" /></a></td>
-  </tr>
-  <tr>
     <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=ef932cce1655" alt="OpenMAIC" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/openclaw"><img src="./assets/generated/cards/openclaw.svg?v=7ccac7a7a931" alt="openclaw" /></a></td>
   </tr>
 </table>
 

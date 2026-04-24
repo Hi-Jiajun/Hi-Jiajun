@@ -69,15 +69,9 @@ projects:
     - repo: "memory-lancedb-pro"
       note_en: "Fork for learning, experimenting, and local adaptation around memory workflows"
       note_zh: "用于记忆工作流学习、实验和本地适配的 fork"
-    - repo: "pua"
-      note_en: "Fork for studying and adapting agent execution patterns"
-      note_zh: "用于研究和适配 Agent 执行模式的 fork"
     - repo: "OpenMAIC"
       note_en: "Fork used to explore multi-agent classroom workflows"
       note_zh: "用于探索多 Agent 课堂工作流的 fork"
-    - repo: "openclaw"
-      note_en: "Upstream project I use and study in AI workflow setups"
-      note_zh: "我在 AI 工作流实践里会使用和研究的上游项目"
 
 sponsor:
   methods:

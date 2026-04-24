@@ -105,17 +105,32 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
     for item in items:
         label = parse.quote(item["label"])
         message = parse.quote(item["message"])
-        color = item["color"]
-        params = ["labelColor=0D1B2A", "style=for-the-badge"]
+        alt = escape(item["label"])
+
+        # 深色主题
+        color_dark = item["color"]
+        params_dark = ["labelColor=0D1B2A", "style=for-the-badge"]
         logo = item.get("logo")
         if logo:
-            params.append(f"logo={parse.quote(logo)}")
-            logo_color = item.get("logo_color") or "F8FAFC"
-            params.append(f"logoColor={logo_color}")
-        query = "&".join(params)
-        alt = escape(item["label"])
+            params_dark.append(f"logo={parse.quote(logo)}")
+            logo_color_dark = item.get("logo_color") or "F8FAFC"
+            params_dark.append(f"logoColor={logo_color_dark}")
+        query_dark = "&".join(params_dark)
+
+        # 浅色主题
+        color_light = item.get("color_light", item["color"])
+        params_light = ["labelColor=F0F6FC", "style=for-the-badge"]
+        if logo:
+            params_light.append(f"logo={parse.quote(logo)}")
+            logo_color_light = item.get("logo_color") or "0D1B2A"
+            params_light.append(f"logoColor={logo_color_light}")
+        query_light = "&".join(params_light)
+
         badges.append(
-            f'  <img src="https://img.shields.io/badge/{label}-{message}-{color}?{query}" alt="{alt}" />'
+            f'  <picture>\n'
+            f'    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/{label}-{message}-{color_dark}?{query_dark}" />\n'
+            f'    <img src="https://img.shields.io/badge/{label}-{message}-{color_light}?{query_light}" alt="{alt}" />\n'
+            f'  </picture>'
         )
     return "\n".join(badges)
 
@@ -124,6 +139,33 @@ def truncate(text: str, max_len: int) -> str:
     if len(text) <= max_len:
         return text
     return text[: max_len - 1].rstrip() + "…"
+
+
+def build_stats_picture(
+    base_url: str,
+    username: str,
+    theme_config: dict[str, dict[str, str]],
+    params: dict[str, str],
+    alt: str,
+    extra_attrs: str = "",
+) -> str:
+    """生成带日夜模式支持的 <picture> 标签"""
+
+    def build_url(theme: str) -> str:
+        color_params = theme_config[theme]
+        all_params = {**params, **color_params}
+        query = "&".join(f"{k}={v}" for k, v in all_params.items())
+        return f"{base_url}?{query}"
+
+    dark_url = build_url("dark")
+    light_url = build_url("light")
+
+    return (
+        f'<picture>\n'
+        f'  <source media="(prefers-color-scheme: dark)" srcset="{dark_url}" />\n'
+        f'  <img src="{light_url}" alt="{alt}" {extra_attrs} />\n'
+        f'</picture>'
+    )
 
 
 def render_card_svg(
@@ -297,6 +339,126 @@ def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) ->
     return "<table>\n  <tr>\n    " + "\n    ".join(cells) + "\n  </tr>\n</table>"
 
 
+def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
+    """生成带日夜模式支持的统计数据块"""
+    # GitHub Readme Stats
+    github_stats = stats_config["github_readme_stats"]
+    stats_params = {
+        "username": username,
+        "show_icons": "true",
+        "include_all_commits": "true",
+        "count_private": "false",
+        "hide_border": "true",
+        "border_radius": "16",
+        "card_width": "480",
+    }
+    stats_img = build_stats_picture(
+        base_url="https://github-readme-stats.vercel.app/api",
+        username=username,
+        theme_config=github_stats,
+        params=stats_params,
+        alt="GitHub stats",
+        extra_attrs='height="195"',
+    )
+
+    # Streak Stats
+    streak_stats = stats_config["streak_stats"]
+    streak_params = {
+        "user": username,
+        "hide_border": "true",
+        "border_radius": "16",
+        "card_width": "480",
+    }
+    streak_img = build_stats_picture(
+        base_url="https://streak-stats.demolab.com/",
+        username=username,
+        theme_config=streak_stats,
+        params=streak_params,
+        alt="GitHub streak",
+        extra_attrs='height="195"',
+    )
+
+    # Activity Graph
+    activity_graph = stats_config["activity_graph"]
+    activity_params = {
+        "username": username,
+        "hide_border": "true",
+        "radius": "16",
+        "area": "true",
+    }
+    activity_img = build_stats_picture(
+        base_url="https://github-readme-activity-graph.vercel.app/graph",
+        username=username,
+        theme_config=activity_graph,
+        params=activity_params,
+        alt="Activity graph",
+        extra_attrs='width="976"',
+    )
+
+    # Top Languages
+    top_langs = stats_config["top_langs"]
+    top_langs_params = {
+        "username": username,
+        "layout": "compact",
+        "hide_border": "true",
+        "border_radius": "16",
+        "card_width": "976",
+        "langs_count": "8",
+    }
+    top_langs_img = build_stats_picture(
+        base_url="https://github-readme-stats.vercel.app/api/top-langs/",
+        username=username,
+        theme_config=top_langs,
+        params=top_langs_params,
+        alt="Top languages",
+    )
+
+    return f'''<table>
+  <tr>
+    <td>
+      {stats_img}
+    </td>
+    <td>
+      {streak_img}
+    </td>
+  </tr>
+</table>
+
+{activity_img}
+
+{top_langs_img}'''
+
+
+def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) -> str:
+    cells: list[str] = []
+    expected: set[str] = set()
+    for method in methods:
+        slug = method["slug"]
+        expected.add(slug)
+        qr_bytes, qr_mime = fetch_qr_image(method["qr_url"])
+        svg = render_sponsor_card_svg(
+            name_zh=method["name_zh"],
+            name_en=method["name_en"],
+            brand_color=method["brand_color"],
+            brand_color_dark=method.get("brand_color_dark", method["brand_color"]),
+            qr_bytes=qr_bytes,
+            qr_mime=qr_mime,
+        )
+        card_path = sponsors_dir / f"{slug}.svg"
+        card_hash = write_if_changed(card_path, svg)
+        img_src = f"./{card_path.as_posix()}?v={card_hash}"
+        cells.append(
+            f'<td align="center" width="50%"><img src="{img_src}" alt="{escape(method["name_en"])} sponsor QR" /></td>'
+        )
+
+    if sponsors_dir.exists():
+        for existing in sponsors_dir.glob("*.svg"):
+            if existing.stem not in expected:
+                existing.unlink()
+
+    return "<table>\n  <tr>\n    " + "\n    ".join(cells) + "\n  </tr>\n</table>"
+
+
 def render_template(template_text: str, values: dict[str, str]) -> str:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
@@ -347,6 +509,7 @@ def main() -> int:
         ),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "SPONSOR_CARDS": render_sponsor_section(config["sponsor"]["methods"], sponsors_dir),
+        "STATS_SECTION": render_stats_section(username, config["stats"]),
         "FOOTER_ZH": config["profile"]["footer_zh"],
         "FOOTER_EN": config["profile"]["footer_en"],
     }

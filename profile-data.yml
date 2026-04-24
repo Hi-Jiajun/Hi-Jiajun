@@ -34,24 +34,31 @@ toolbox:
   - label: "Python"
     message: "tooling"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "Node.js"
     message: "scripts"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "GitHub Actions"
     message: "automation"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "OpenClaw"
     message: "workflow experiments"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "MCP"
     message: "tool integration"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "Browser Automation"
     message: "experiments"
     color: "0D1B2A"
+    color_light: "F0F6FC"
   - label: "WSL"
     message: "windows workflows"
     color: "0D1B2A"
+    color_light: "F0F6FC"
 
 projects:
   original:
@@ -86,3 +93,61 @@ sponsor:
       brand_color: "1677FF"
       brand_color_dark: "4A96FF"
       qr_url: "https://Hi-Jiajun.github.io/picx-images-hosting/alipay_qrcode.7p45v27tjq.webp"
+
+stats:
+  github_readme_stats:
+    dark:
+      bg_color: "0D1B2A"
+      title_color: "38BDF8"
+      text_color: "F8FAFC"
+      icon_color: "2DD4BF"
+    light:
+      bg_color: "F0F6FC"
+      title_color: "0D1B2A"
+      text_color: "1F2937"
+      icon_color: "0369A1"
+  streak_stats:
+    dark:
+      background: "0D1B2A"
+      stroke: "184B54"
+      ring: "38BDF8"
+      fire: "F59E0B"
+      currStreakLabel: "38BDF8"
+      currStreakNum: "F8FAFC"
+      sideNums: "F8FAFC"
+      sideLabels: "D4E7F5"
+      dates: "8DD4FF"
+    light:
+      background: "F0F6FC"
+      stroke: "CBD5E1"
+      ring: "0284C7"
+      fire: "F59E0B"
+      currStreakLabel: "0284C7"
+      currStreakNum: "1F2937"
+      sideNums: "1F2937"
+      sideLabels: "475569"
+      dates: "0284C7"
+  activity_graph:
+    dark:
+      bg_color: "0D1B2A"
+      color: "F8FAFC"
+      title_color: "38BDF8"
+      line: "38BDF8"
+      point: "2DD4BF"
+      area_color: "38BDF8"
+    light:
+      bg_color: "F0F6FC"
+      color: "1F2937"
+      title_color: "0284C7"
+      line: "0284C7"
+      point: "0369A1"
+      area_color: "0284C7"
+  top_langs:
+    dark:
+      bg_color: "0D1B2A"
+      title_color: "38BDF8"
+      text_color: "F8FAFC"
+    light:
+      bg_color: "F0F6FC"
+      title_color: "0D1B2A"
+      text_color: "1F2937"

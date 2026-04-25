@@ -183,7 +183,7 @@ def render_card_svg(
     stats = f"⭐ {stars} · updated {pushed}"
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" width="440" height="140" role="img" aria-label="{escape(repo_name)}">
   <style>
-    .card {{ fill: #ffffff; stroke: #e2e8f0; }}
+    .card {{ fill: #F0F6FC; stroke: #cbd5e1; }}
     .tag {{ fill: #0284c7; font-weight: 700; letter-spacing: 1.5px; }}
     .title {{ fill: #0f172a; font-weight: 700; }}
     .note-zh {{ fill: #334155; }}
@@ -295,7 +295,7 @@ def render_sponsor_card_svg(
     label = f"{name_zh} · {name_en}"
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="{escape(name_en)} QR code">
   <style>
-    .card {{ fill: #ffffff; stroke: #e2e8f0; }}
+    .card {{ fill: #F0F6FC; stroke: #cbd5e1; }}
     .title {{ fill: #{brand_color}; font-weight: 700; }}
     @media (prefers-color-scheme: dark) {{
       .card {{ fill: #0D1B2A; stroke: #184B54; }}

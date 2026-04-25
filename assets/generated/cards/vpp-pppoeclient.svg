@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" width="440" height="140" role="img" aria-label="vpp-pppoeclient">
   <style>
-    .card { fill: #ffffff; stroke: #e2e8f0; }
+    .card { fill: #F0F6FC; stroke: #cbd5e1; }
     .tag { fill: #0284c7; font-weight: 700; letter-spacing: 1.5px; }
     .title { fill: #0f172a; font-weight: 700; }
     .note-zh { fill: #334155; }

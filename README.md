@@ -39,7 +39,7 @@
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=69dd5323ddc7" alt="vpp-pppoeclient" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=51024d1e2896" alt="vpp-pppoeclient" /></a></td>
   </tr>
 </table>
 
@@ -47,8 +47,8 @@
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=a09b1c52c50c" alt="memory-lancedb-pro" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=ef932cce1655" alt="OpenMAIC" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=c553ccd5190d" alt="memory-lancedb-pro" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=486f967c600b" alt="OpenMAIC" /></a></td>
   </tr>
 </table>
 
@@ -129,8 +129,8 @@
 
 <table>
   <tr>
-    <td align="center" width="50%"><img src="./assets/generated/sponsors/wechat.svg?v=e0a420614689" alt="WeChat sponsor QR" /></td>
-    <td align="center" width="50%"><img src="./assets/generated/sponsors/alipay.svg?v=dc0070d40ed7" alt="Alipay sponsor QR" /></td>
+    <td align="center" width="50%"><img src="./assets/generated/sponsors/wechat.svg?v=b04ca3b3e681" alt="WeChat sponsor QR" /></td>
+    <td align="center" width="50%"><img src="./assets/generated/sponsors/alipay.svg?v=7f48e548291d" alt="Alipay sponsor QR" /></td>
   </tr>
 </table>
 

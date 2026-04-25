@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="Alipay QR code">
   <style>
-    .card { fill: #ffffff; stroke: #e2e8f0; }
+    .card { fill: #F0F6FC; stroke: #cbd5e1; }
     .title { fill: #1677FF; font-weight: 700; }
     @media (prefers-color-scheme: dark) {
       .card { fill: #0D1B2A; stroke: #184B54; }

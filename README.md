@@ -39,7 +39,7 @@
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=ccd6574c78e3" alt="vpp-pppoeclient" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=0f97d5c27de6" alt="vpp-pppoeclient" /></a></td>
   </tr>
 </table>
 

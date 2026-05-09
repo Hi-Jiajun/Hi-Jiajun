@@ -122,7 +122,7 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
         params_light = ["labelColor=F0F6FC", "style=for-the-badge"]
         if logo:
             params_light.append(f"logo={parse.quote(logo)}")
-            logo_color_light = item.get("logo_color") or "0D1B2A"
+            logo_color_light = item.get("logo_color_light") or "0D1B2A"
             params_light.append(f"logoColor={logo_color_light}")
         query_light = "&".join(params_light)
 
@@ -250,6 +250,10 @@ def render_project_section(
         cells.append(
             f'<td><a href="{escape(repo_url)}"><img src="{img_src}" alt="{escape(repo_name)}" /></a></td>'
         )
+
+    # 单个项目时居中显示
+    if len(cells) == 1:
+        return f'<div align="center">\n\n{cells[0].replace("<td>", "").replace("</td>", "")}\n\n</div>'
 
     rows = []
     for i in range(0, len(cells), 2):
@@ -424,7 +428,11 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
   </tr>
 </table>
 
+<br/>
+
 {activity_img}
+
+<br/>
 
 {top_langs_img}'''
 

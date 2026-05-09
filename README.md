@@ -37,11 +37,11 @@
 
 ## 🚀 原创 <sub>Original Work</sub>
 
-<table>
-  <tr>
-    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=0f97d5c27de6" alt="vpp-pppoeclient" /></a></td>
-  </tr>
-</table>
+<div align="center">
+
+<a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=0f97d5c27de6" alt="vpp-pppoeclient" /></a>
+
+</div>
 
 ## 🤝 Fork · 参考 <sub>Forks &amp; References</sub>
 
@@ -56,16 +56,16 @@
 
 <p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Python-tooling-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="Python" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=python&logoColor=38BDF8" />
+    <img src="https://img.shields.io/badge/Python-tooling-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=python&logoColor=0369A1" alt="Python" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Node.js-scripts-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="Node.js" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=nodedotjs&logoColor=2DD4BF" />
+    <img src="https://img.shields.io/badge/Node.js-scripts-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=nodedotjs&logoColor=0D9488" alt="Node.js" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/GitHub%20Actions-automation-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="GitHub Actions" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=githubactions&logoColor=38BDF8" />
+    <img src="https://img.shields.io/badge/GitHub%20Actions-automation-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=githubactions&logoColor=0369A1" alt="GitHub Actions" />
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/OpenClaw-workflow%20experiments-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
@@ -80,8 +80,8 @@
     <img src="https://img.shields.io/badge/Browser%20Automation-experiments-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="Browser Automation" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/WSL-windows%20workflows-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="WSL" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=windowsterminal&logoColor=F59E0B" />
+    <img src="https://img.shields.io/badge/WSL-windows%20workflows-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=windowsterminal&logoColor=D97706" alt="WSL" />
   </picture>
 </p>
 
@@ -106,10 +106,14 @@
   </tr>
 </table>
 
+<br/>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=0D1B2A&color=F8FAFC&title_color=38BDF8&line=38BDF8&point=2DD4BF&area_color=38BDF8" />
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=F0F6FC&color=1F2937&title_color=0284C7&line=0284C7&point=0369A1&area_color=0284C7" alt="Activity graph" width="976" />
 </picture>
+
+<br/>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC" />

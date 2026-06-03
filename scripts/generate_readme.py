@@ -7,12 +7,13 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
 from typing import Any
 from urllib import parse, request
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 
 import yaml
 
@@ -22,6 +23,9 @@ AUTO_GENERATED_NOTICE = (
     "<!-- AUTO-GENERATED FROM README.template.md AND profile-data.yml. DO NOT EDIT DIRECTLY. -->\n"
 )
 CARD_FONT_FAMILY = "Segoe UI, Helvetica Neue, Arial, sans-serif"
+HTTP_TIMEOUT = 15  # seconds
+MAX_RETRY = 3
+MAX_PAGES = 20  # safety valve for pagination
 
 
 def parse_args() -> argparse.Namespace:
@@ -52,24 +56,36 @@ def github_request(url: str, token: str | None = None) -> tuple[Any, dict[str, s
         headers["Authorization"] = f"Bearer {token}"
 
     req = request.Request(url, headers=headers)
-    try:
-        with request.urlopen(req) as response:
-            body = response.read().decode("utf-8")
-            header_map = {k: v for k, v in response.headers.items()}
-    except HTTPError as exc:
-        exc_headers = exc.headers or {}
-        remaining = exc_headers.get("X-RateLimit-Remaining")
-        reset = exc_headers.get("X-RateLimit-Reset")
-        detail = f" (rate limit remaining={remaining}, reset={reset})" if remaining is not None else ""
-        raise RuntimeError(f"GitHub API {exc.code} on {url}{detail}: {exc.reason}") from exc
-    return json.loads(body), header_map
+    last_exc: Exception | None = None
+    for attempt in range(1, MAX_RETRY + 1):
+        try:
+            with request.urlopen(req, timeout=HTTP_TIMEOUT) as response:
+                body = response.read().decode("utf-8")
+                header_map = {k: v for k, v in response.headers.items()}
+            return json.loads(body), header_map
+        except HTTPError as exc:
+            exc_headers = exc.headers or {}
+            remaining = exc_headers.get("X-RateLimit-Remaining")
+            reset = exc_headers.get("X-RateLimit-Reset")
+            detail = f" (rate limit remaining={remaining}, reset={reset})" if remaining is not None else ""
+            # Don't retry client errors (4xx) except 429 (rate limit)
+            if exc.code < 500 and exc.code != 429:
+                raise RuntimeError(f"GitHub API {exc.code} on {url}{detail}: {exc.reason}") from exc
+            last_exc = exc
+            if attempt < MAX_RETRY:
+                time.sleep(2 ** attempt)
+        except (URLError, OSError) as exc:
+            last_exc = exc
+            if attempt < MAX_RETRY:
+                time.sleep(2 ** attempt)
+    raise RuntimeError(f"GitHub API failed after {MAX_RETRY} attempts on {url}: {last_exc}") from last_exc
 
 
 def fetch_repositories(username: str, token: str | None = None) -> list[dict[str, Any]]:
     repos: list[dict[str, Any]] = []
     page = 1
 
-    while True:
+    while page <= MAX_PAGES:
         url = f"https://api.github.com/users/{username}/repos?per_page=100&page={page}&sort=updated&type=owner"
         data, _headers = github_request(url, token=token)
         if not data:
@@ -84,6 +100,18 @@ def fetch_repositories(username: str, token: str | None = None) -> list[dict[str
         page += 1
 
     return repos
+
+
+def fetch_single_repo(username: str, repo_name: str, token: str | None = None) -> dict[str, Any] | None:
+    """Fetch metadata for a single repository. Returns None if not found."""
+    url = f"https://api.github.com/repos/{username}/{repo_name}"
+    try:
+        data, _headers = github_request(url, token=token)
+        return data if isinstance(data, dict) else None
+    except RuntimeError as exc:
+        if "404" in str(exc):
+            return None
+        raise
 
 
 def format_date(value: str | None) -> str:
@@ -273,17 +301,35 @@ def prune_stale_cards(cards_dir: Path, expected_names: set[str]) -> None:
 MIME_BY_EXT = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif"}
 
 
-def fetch_qr_image(url: str) -> tuple[bytes, str]:
+def fetch_qr_image(url: str, cache_dir: Path | None = None) -> tuple[bytes, str]:
+    """Download a QR image with local caching to avoid redundant fetches."""
+    # Try cache first
+    if cache_dir:
+        url_hash = hashlib.sha256(url.encode()).hexdigest()[:16]
+        cache_path = cache_dir / url_hash
+        meta_path = cache_dir / f"{url_hash}.meta"
+        if cache_path.exists() and meta_path.exists():
+            meta = json.loads(meta_path.read_text())
+            if meta.get("url") == url:
+                return cache_path.read_bytes(), meta["content_type"]
+
     req = request.Request(
         url,
         headers={"User-Agent": "Hi-Jiajun-profile-readme-generator"},
     )
-    with request.urlopen(req) as response:
+    with request.urlopen(req, timeout=HTTP_TIMEOUT) as response:
         body = response.read()
         content_type = response.headers.get_content_type() or ""
     if not content_type.startswith("image/"):
         ext = Path(parse.urlparse(url).path).suffix.lower()
         content_type = MIME_BY_EXT.get(ext, "application/octet-stream")
+
+    # Write to cache
+    if cache_dir:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cache_path.write_bytes(body)
+        meta_path.write_text(json.dumps({"url": url, "content_type": content_type}))
+
     return body, content_type
 
 
@@ -316,10 +362,11 @@ def render_sponsor_card_svg(
 def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) -> str:
     cells: list[str] = []
     expected: set[str] = set()
+    qr_cache_dir = sponsors_dir / ".qr_cache"
     for method in methods:
         slug = method["slug"]
         expected.add(slug)
-        qr_bytes, qr_mime = fetch_qr_image(method["qr_url"])
+        qr_bytes, qr_mime = fetch_qr_image(method["qr_url"], cache_dir=qr_cache_dir)
         svg = render_sponsor_card_svg(
             name_zh=method["name_zh"],
             name_en=method["name_en"],
@@ -437,37 +484,13 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
 {top_langs_img}'''
 
 
-def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) -> str:
-    cells: list[str] = []
-    expected: set[str] = set()
-    for method in methods:
-        slug = method["slug"]
-        expected.add(slug)
-        qr_bytes, qr_mime = fetch_qr_image(method["qr_url"])
-        svg = render_sponsor_card_svg(
-            name_zh=method["name_zh"],
-            name_en=method["name_en"],
-            brand_color=method["brand_color"],
-            brand_color_dark=method.get("brand_color_dark", method["brand_color"]),
-            qr_bytes=qr_bytes,
-            qr_mime=qr_mime,
-        )
-        card_path = sponsors_dir / f"{slug}.svg"
-        card_hash = write_if_changed(card_path, svg)
-        img_src = f"./{card_path.as_posix()}?v={card_hash}"
-        cells.append(
-            f'<td align="center" width="50%"><img src="{img_src}" alt="{escape(method["name_en"])} sponsor QR" /></td>'
-        )
-
-    if sponsors_dir.exists():
-        for existing in sponsors_dir.glob("*.svg"):
-            if existing.stem not in expected:
-                existing.unlink()
-
-    return "<table>\n  <tr>\n    " + "\n    ".join(cells) + "\n  </tr>\n</table>"
-
-
 def render_template(template_text: str, values: dict[str, str]) -> str:
+    # Warn about unused values (keys in values but not in template)
+    template_keys = set(PLACEHOLDER_PATTERN.findall(template_text))
+    unused = set(values.keys()) - template_keys
+    if unused:
+        print(f"Warning: values provided but not used in template: {', '.join(sorted(unused))}", file=sys.stderr)
+
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
         if key not in values:
@@ -491,13 +514,18 @@ def main() -> int:
 
     username = config["profile"]["username"]
     token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
-    repos = fetch_repositories(username, token=token)
-    repo_map = {repo["name"]: repo for repo in repos}
 
-    expected_card_names: set[str] = {
+    # Only fetch repos that are actually referenced in config (saves API calls)
+    needed_repos: set[str] = {
         entry["repo"] for entry in config["projects"]["original"]
     } | {entry["repo"] for entry in config["projects"]["forks"]}
-    prune_stale_cards(cards_dir, expected_card_names)
+    repo_map: dict[str, dict[str, Any]] = {}
+    for repo_name in needed_repos:
+        repo = fetch_single_repo(username, repo_name, token=token)
+        if repo:
+            repo_map[repo_name] = repo
+
+    prune_stale_cards(cards_dir, needed_repos)
 
     values = {
         "USERNAME": username,

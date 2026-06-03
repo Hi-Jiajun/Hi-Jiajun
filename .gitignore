@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# OS artifacts (WSL NTFS alternate data streams)
+*:Zone.Identifier
+
+# Runtime cache
+.qr_cache/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo

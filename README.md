@@ -39,16 +39,16 @@
 
 <div align="center">
 
-<a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=93f4b1849a9f" alt="vpp-pppoeclient" /></a>
+<a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=4ca6de957b8d" alt="vpp-pppoeclient" /></a>
 
 </div>
 
-## 🤝 Fork · 参考 <sub>Forks &amp; References</sub>
+## 🤝 Fork · 参考 <sub>Forks & References</sub>
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=c553ccd5190d" alt="memory-lancedb-pro" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=486f967c600b" alt="OpenMAIC" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=fa5cedc3eb16" alt="memory-lancedb-pro" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=d6586b5b328d" alt="OpenMAIC" /></a></td>
   </tr>
 </table>
 
@@ -56,32 +56,32 @@
 
 <p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=python&logoColor=38BDF8" />
-    <img src="https://img.shields.io/badge/Python-tooling-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=python&logoColor=0369A1" alt="Python" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=flat&logo=python&logoColor=38BDF8" />
+    <img src="https://img.shields.io/badge/Python-tooling-F0F6FC?labelColor=F0F6FC&style=flat&logo=python&logoColor=0369A1" alt="Python" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=nodedotjs&logoColor=2DD4BF" />
-    <img src="https://img.shields.io/badge/Node.js-scripts-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=nodedotjs&logoColor=0D9488" alt="Node.js" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Node.js-scripts-0D1B2A?labelColor=0D1B2A&style=flat&logo=nodedotjs&logoColor=2DD4BF" />
+    <img src="https://img.shields.io/badge/Node.js-scripts-F0F6FC?labelColor=F0F6FC&style=flat&logo=nodedotjs&logoColor=0D9488" alt="Node.js" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=githubactions&logoColor=38BDF8" />
-    <img src="https://img.shields.io/badge/GitHub%20Actions-automation-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=githubactions&logoColor=0369A1" alt="GitHub Actions" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/GitHub%20Actions-automation-0D1B2A?labelColor=0D1B2A&style=flat&logo=githubactions&logoColor=38BDF8" />
+    <img src="https://img.shields.io/badge/GitHub%20Actions-automation-F0F6FC?labelColor=F0F6FC&style=flat&logo=githubactions&logoColor=0369A1" alt="GitHub Actions" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/OpenClaw-workflow%20experiments-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/OpenClaw-workflow%20experiments-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="OpenClaw" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/OpenClaw-workflow%20experiments-0D1B2A?labelColor=0D1B2A&style=flat" />
+    <img src="https://img.shields.io/badge/OpenClaw-workflow%20experiments-F0F6FC?labelColor=F0F6FC&style=flat" alt="OpenClaw" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/MCP-tool%20integration-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/MCP-tool%20integration-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="MCP" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/MCP-tool%20integration-0D1B2A?labelColor=0D1B2A&style=flat" />
+    <img src="https://img.shields.io/badge/MCP-tool%20integration-F0F6FC?labelColor=F0F6FC&style=flat" alt="MCP" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Browser%20Automation-experiments-0D1B2A?labelColor=0D1B2A&style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Browser%20Automation-experiments-F0F6FC?labelColor=F0F6FC&style=for-the-badge" alt="Browser Automation" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Browser%20Automation-experiments-0D1B2A?labelColor=0D1B2A&style=flat" />
+    <img src="https://img.shields.io/badge/Browser%20Automation-experiments-F0F6FC?labelColor=F0F6FC&style=flat" alt="Browser Automation" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=for-the-badge&logo=windowsterminal&logoColor=F59E0B" />
-    <img src="https://img.shields.io/badge/WSL-windows%20workflows-F0F6FC?labelColor=F0F6FC&style=for-the-badge&logo=windowsterminal&logoColor=D97706" alt="WSL" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/WSL-windows%20workflows-0D1B2A?labelColor=0D1B2A&style=flat&logo=windowsterminal&logoColor=F59E0B" />
+    <img src="https://img.shields.io/badge/WSL-windows%20workflows-F0F6FC?labelColor=F0F6FC&style=flat&logo=windowsterminal&logoColor=D97706" alt="WSL" />
   </picture>
 </p>
 

@@ -137,7 +137,7 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
 
         # 深色主题
         color_dark = item["color"]
-        params_dark = ["labelColor=0D1B2A", "style=for-the-badge"]
+        params_dark = ["labelColor=0D1B2A", "style=flat"]
         logo = item.get("logo")
         if logo:
             params_dark.append(f"logo={parse.quote(logo)}")
@@ -147,7 +147,7 @@ def format_toolbox_badges(items: list[dict[str, str]]) -> str:
 
         # 浅色主题
         color_light = item.get("color_light", item["color"])
-        params_light = ["labelColor=F0F6FC", "style=for-the-badge"]
+        params_light = ["labelColor=F0F6FC", "style=flat"]
         if logo:
             params_light.append(f"logo={parse.quote(logo)}")
             logo_color_light = item.get("logo_color_light") or "0D1B2A"
@@ -203,12 +203,13 @@ def render_card_svg(
     note_en: str,
     language: str,
     stars: int,
+    forks: int,
     pushed: str,
 ) -> str:
     title = truncate(repo_name, 32)
     zh = truncate(note_zh, 28)
     en = truncate(note_en, 66)
-    stats = f"⭐ {stars} · updated {pushed}"
+    stats = f"⭐ {stars} · 🍴 {forks} · updated {pushed}"
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" width="440" height="140" role="img" aria-label="{escape(repo_name)}">
   <style>
     .card {{ fill: #F0F6FC; stroke: #cbd5e1; }}
@@ -261,6 +262,7 @@ def render_project_section(
         repo_url = repo["html_url"] if repo else f"https://github.com/{username}/{repo_name}"
         language = (repo.get("language") if repo else None) or "—"
         stars = int(repo.get("stargazers_count", 0)) if repo else 0
+        forks = int(repo.get("forks_count", 0)) if repo else 0
         pushed = format_date(repo.get("pushed_at") if repo else None)
 
         svg = render_card_svg(
@@ -270,6 +272,7 @@ def render_project_section(
             note_en=entry["note_en"],
             language=language,
             stars=stars,
+            forks=forks,
             pushed=pushed,
         )
         card_path = cards_dir / f"{repo_name}.svg"

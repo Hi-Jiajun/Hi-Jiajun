@@ -93,14 +93,14 @@
   <tr>
     <td>
       <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC&icon_color=2DD4BF" />
-  <img src="https://github-readme-stats.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937&icon_color=0369A1" alt="GitHub stats" height="195" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-rosy-two.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC&icon_color=2DD4BF" />
+  <img src="https://github-readme-stats-rosy-two.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937&icon_color=0369A1" alt="GitHub stats" height="195" />
 </picture>
     </td>
     <td>
       <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=Hi-Jiajun&hide_border=true&border_radius=16&card_width=480&background=0D1B2A&stroke=184B54&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&currStreakNum=F8FAFC&sideNums=F8FAFC&sideLabels=D4E7F5&dates=8DD4FF" />
-  <img src="https://streak-stats.demolab.com/?user=Hi-Jiajun&hide_border=true&border_radius=16&card_width=480&background=F0F6FC&stroke=CBD5E1&ring=0284C7&fire=F59E0B&currStreakLabel=0284C7&currStreakNum=1F2937&sideNums=1F2937&sideLabels=475569&dates=0284C7" alt="GitHub streak" height="195" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=0D1B2A&color=F8FAFC&title_color=38BDF8&line=38BDF8&point=2DD4BF&area_color=38BDF8" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=F0F6FC&color=1F2937&title_color=0284C7&line=0284C7&point=0369A1&area_color=0284C7" alt="Activity graph" width="976" />
 </picture>
     </td>
   </tr>
@@ -109,15 +109,8 @@
 <br/>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=0D1B2A&color=F8FAFC&title_color=38BDF8&line=38BDF8&point=2DD4BF&area_color=38BDF8" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=F0F6FC&color=1F2937&title_color=0284C7&line=0284C7&point=0369A1&area_color=0284C7" alt="Activity graph" width="976" />
-</picture>
-
-<br/>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937" alt="Top languages"  />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC" />
+  <img src="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937" alt="Top languages"  />
 </picture>
 
 </div>

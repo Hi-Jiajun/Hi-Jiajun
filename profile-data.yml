@@ -112,27 +112,6 @@ stats:
       title_color: "0D1B2A"
       text_color: "1F2937"
       icon_color: "0369A1"
-  streak_stats:
-    dark:
-      background: "0D1B2A"
-      stroke: "184B54"
-      ring: "38BDF8"
-      fire: "F59E0B"
-      currStreakLabel: "38BDF8"
-      currStreakNum: "F8FAFC"
-      sideNums: "F8FAFC"
-      sideLabels: "D4E7F5"
-      dates: "8DD4FF"
-    light:
-      background: "F0F6FC"
-      stroke: "CBD5E1"
-      ring: "0284C7"
-      fire: "F59E0B"
-      currStreakLabel: "0284C7"
-      currStreakNum: "1F2937"
-      sideNums: "1F2937"
-      sideLabels: "475569"
-      dates: "0284C7"
   activity_graph:
     dark:
       bg_color: "0D1B2A"

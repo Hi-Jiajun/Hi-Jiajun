@@ -392,7 +392,7 @@ def render_sponsor_section(methods: list[dict[str, str]], sponsors_dir: Path) ->
 
 def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
     """生成带日夜模式支持的统计数据块"""
-    # GitHub Readme Stats
+    # GitHub Readme Stats (使用社区 fork 部署，比官方 Vercel 更稳定)
     github_stats = stats_config["github_readme_stats"]
     stats_params = {
         "username": username,
@@ -404,28 +404,11 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
         "card_width": "480",
     }
     stats_img = build_stats_picture(
-        base_url="https://github-readme-stats.vercel.app/api",
+        base_url="https://github-readme-stats-rosy-two.vercel.app/api",
         username=username,
         theme_config=github_stats,
         params=stats_params,
         alt="GitHub stats",
-        extra_attrs='height="195"',
-    )
-
-    # Streak Stats
-    streak_stats = stats_config["streak_stats"]
-    streak_params = {
-        "user": username,
-        "hide_border": "true",
-        "border_radius": "16",
-        "card_width": "480",
-    }
-    streak_img = build_stats_picture(
-        base_url="https://streak-stats.demolab.com/",
-        username=username,
-        theme_config=streak_stats,
-        params=streak_params,
-        alt="GitHub streak",
         extra_attrs='height="195"',
     )
 
@@ -457,7 +440,7 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
         "langs_count": "8",
     }
     top_langs_img = build_stats_picture(
-        base_url="https://github-readme-stats.vercel.app/api/top-langs/",
+        base_url="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/",
         username=username,
         theme_config=top_langs,
         params=top_langs_params,
@@ -470,14 +453,10 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
       {stats_img}
     </td>
     <td>
-      {streak_img}
+      {activity_img}
     </td>
   </tr>
 </table>
-
-<br/>
-
-{activity_img}
 
 <br/>
 

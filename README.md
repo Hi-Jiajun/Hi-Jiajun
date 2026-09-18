@@ -85,28 +85,16 @@
 
 <div align="center">
 
-<table>
-  <tr>
-    <td>
-      <picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-rosy-two.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC&icon_color=2DD4BF" />
   <img src="https://github-readme-stats-rosy-two.vercel.app/api?username=Hi-Jiajun&show_icons=true&include_all_commits=true&count_private=false&hide_border=true&border_radius=16&card_width=480&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937&icon_color=0369A1" alt="GitHub stats" height="195" />
 </picture>
-    </td>
-    <td>
-      <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=0D1B2A&color=F8FAFC&title_color=38BDF8&line=38BDF8&point=2DD4BF&area_color=38BDF8" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hi-Jiajun&hide_border=true&radius=16&area=true&bg_color=F0F6FC&color=1F2937&title_color=0284C7&line=0284C7&point=0369A1&area_color=0284C7" alt="Activity graph" width="976" />
-</picture>
-    </td>
-  </tr>
-</table>
 
 <br/>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC" />
-  <img src="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=976&langs_count=8&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937" alt="Top languages"  />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=480&langs_count=6&bg_color=0D1B2A&title_color=38BDF8&text_color=F8FAFC" />
+  <img src="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/?username=Hi-Jiajun&layout=compact&hide_border=true&border_radius=16&card_width=480&langs_count=6&bg_color=F0F6FC&title_color=0D1B2A&text_color=1F2937" alt="Top languages"  />
 </picture>
 
 </div>
@@ -120,12 +108,19 @@
   <sub>If any of these tools or scripts helped you, feel free to buy me a coffee.</sub>
 </p>
 
+<details>
+<summary><b>扫码支持 · Scan to support</b></summary>
+
+<br/>
+
 <table>
   <tr>
     <td align="center" width="50%"><img src="./assets/generated/sponsors/wechat.svg?v=b04ca3b3e681" alt="WeChat sponsor QR" /></td>
     <td align="center" width="50%"><img src="./assets/generated/sponsors/alipay.svg?v=7f48e548291d" alt="Alipay sponsor QR" /></td>
   </tr>
 </table>
+
+</details>
 
 </div>
 

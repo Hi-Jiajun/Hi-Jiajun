@@ -415,23 +415,6 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
         extra_attrs='height="195"',
     )
 
-    # Activity Graph
-    activity_graph = stats_config["activity_graph"]
-    activity_params = {
-        "username": username,
-        "hide_border": "true",
-        "radius": "16",
-        "area": "true",
-    }
-    activity_img = build_stats_picture(
-        base_url="https://github-readme-activity-graph.vercel.app/graph",
-        username=username,
-        theme_config=activity_graph,
-        params=activity_params,
-        alt="Activity graph",
-        extra_attrs='width="976"',
-    )
-
     # Top Languages
     top_langs = stats_config["top_langs"]
     top_langs_params = {
@@ -439,8 +422,8 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
         "layout": "compact",
         "hide_border": "true",
         "border_radius": "16",
-        "card_width": "976",
-        "langs_count": "8",
+        "card_width": "480",
+        "langs_count": "6",
     }
     top_langs_img = build_stats_picture(
         base_url="https://github-readme-stats-rosy-two.vercel.app/api/top-langs/",
@@ -450,16 +433,10 @@ def render_stats_section(username: str, stats_config: dict[str, Any]) -> str:
         alt="Top languages",
     )
 
-    return f'''<table>
-  <tr>
-    <td>
-      {stats_img}
-    </td>
-    <td>
-      {activity_img}
-    </td>
-  </tr>
-</table>
+    # 单列竖排：卡片自然宽度 <=530px，手机上不会被压到读不出字。
+    # 曾经的 github-readme-activity-graph 公共实例已停服（HTTP 402），
+    # 且 GitHub 个人页本身就自带 contribution 图，故不再引入第三方活动图。
+    return f'''{stats_img}
 
 <br/>
 

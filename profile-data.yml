@@ -116,21 +116,6 @@ stats:
       title_color: "0D1B2A"
       text_color: "1F2937"
       icon_color: "0369A1"
-  activity_graph:
-    dark:
-      bg_color: "0D1B2A"
-      color: "F8FAFC"
-      title_color: "38BDF8"
-      line: "38BDF8"
-      point: "2DD4BF"
-      area_color: "38BDF8"
-    light:
-      bg_color: "F0F6FC"
-      color: "1F2937"
-      title_color: "0284C7"
-      line: "0284C7"
-      point: "0369A1"
-      area_color: "0284C7"
   top_langs:
     dark:
       bg_color: "0D1B2A"

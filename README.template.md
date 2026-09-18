@@ -50,7 +50,14 @@
   <sub>If any of these tools or scripts helped you, feel free to buy me a coffee.</sub>
 </p>
 
+<details>
+<summary><b>扫码支持 · Scan to support</b></summary>
+
+<br/>
+
 {{ SPONSOR_CARDS }}
+
+</details>
 
 </div>
 

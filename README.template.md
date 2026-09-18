@@ -23,13 +23,9 @@
 
 {{ ABOUT_ITEMS }}
 
-## 🚀 原创 <sub>Original Work</sub>
+## 🚀 原创项目 <sub>Original Projects</sub>
 
 {{ ORIGINAL_CARDS }}
-
-## 🤝 Fork · 参考 <sub>Forks & References</sub>
-
-{{ FORK_CARDS }}
 
 ## 🧰 技术 <sub>Stack</sub>
 

@@ -19,7 +19,7 @@
   <text x="18" y="28" class="tag" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12">🛠 ORIGINAL</text>
   <text x="422" y="28" class="stats" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" text-anchor="end">Shell</text>
   <text x="18" y="58" class="title" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20">vpp-pppoeclient</text>
-  <text x="18" y="82" class="note-zh" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13">从我的分支工作中拆出的 VPP PPPoE Clien…</text>
-  <text x="18" y="100" class="note-en" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11">Standalone repository for a VPP PPPoE client plugin extracted fro…</text>
+  <text x="18" y="82" class="note-zh" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13">FD.io VPP 的用户态 PPPoE 客户端插件</text>
+  <text x="18" y="100" class="note-en" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11">A user-space PPPoE client plugin for FD.io VPP (RFC 2516)</text>
   <text x="18" y="122" class="stats" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11">⭐ 4 · 🍴 0 · updated 2026-09-11</text>
 </svg>

@@ -8,53 +8,49 @@
 
 <h1>Hi, I'm Hi-Jiajun 👋</h1>
 
-<p>🧑‍💻 个人开发者 · <sub>Solo builder</sub></p>
+<p>🧑‍💻 个人开发者 · 数据面与系统实验 · <sub>Solo builder · dataplane & systems experiments</sub></p>
 
 <p>
-  🛠️ 我把 GitHub 当成公开工作台，放自制工具、脚本、实验项目，也放我学习、适配、参考过的 fork。<br/>
-  <sub>I use GitHub as a public workshop for tools, scripts, experiments, and forks I learn from.</sub>
+  🛠️ 我把 GitHub 当成公开工作台，在这里维护自己从零写起、而且还在用的项目：用户态网络数据面、系统与 GPU 实验、能省掉重复劳动的 AI 工作流。<br/>
+  <sub>I use GitHub as a public workbench for the things I build from scratch and still use: user-space dataplane, systems and GPU experiments, and AI workflows that remove repeated work.</sub>
 </p>
 
 </div>
 
-> ℹ️ 这里不是所有仓库都由我从零构建。  
-> <sub>Some are original, some are forks I use, study, or adapt.</sub>
+> ℹ️ 仓库里既有我从零写的项目，也有学习和适配用的 fork。  
+> <sub>Some repos are original work; others are forks I study and adapt.</sub>
 
 ## 关于 <sub>About</sub>
 
-- 🤖 AI 辅助工作流与 Agent 工具<br/>
-  <sub>AI-assisted workflows and agent tooling</sub>
-- 🌐 网络、路由和域名规则相关工具<br/>
-  <sub>Networking, routing, and domain-rule tooling</sub>
-- ⚙️ 把重复的日常工作沉淀成脚本和流程<br/>
-  <sub>Turning repeated work into scripts and workflows</sub>
-- 🧪 在真实开发和运维场景里测试 AI 工具<br/>
-  <sub>Testing AI tools in real dev and ops tasks</sub>
-- 🌱 少堆 demo，多维护真正还在用的项目<br/>
-  <sub>Fewer half-finished demos, more alive projects</sub>
-- 🤝 通过 fork、适配，偶尔向上游贡献来学习<br/>
-  <sub>Learning by forking, adapting, sometimes contributing back</sub>
+- 🌐 用户态数据面：FD.io VPP 的 PPPoE 插件，从协议状态机做到性能验证<br/>
+  <sub>User-space dataplane: a PPPoE plugin for FD.io VPP, from protocol state machine to performance benchmarks</sub>
+- 🧪 系统与 GPU 实验：在 Vulkan 上复刻 Metal 计算 API，对比行为与精度差异<br/>
+  <sub>Systems and GPU experiments: reproducing the Metal compute API on Vulkan and comparing parity</sub>
+- 🤖 AI 工作流：Agent 工具、MCP 集成，把重复劳动写成脚本<br/>
+  <sub>AI workflows: agent tooling, MCP integration, and scripting away repeated work</sub>
+- 🤝 靠 fork、适配，偶尔给上游提 PR 来学习<br/>
+  <sub>Learning by forking, adapting, and sending the occasional upstream PR</sub>
 
-## 🚀 原创 <sub>Original Work</sub>
-
-<div align="center">
-
-<a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=dcccc0b41c9c" alt="vpp-pppoeclient" /></a>
-
-</div>
-
-## 🤝 Fork · 参考 <sub>Forks & References</sub>
+## 🚀 原创项目 <sub>Original Projects</sub>
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/memory-lancedb-pro"><img src="./assets/generated/cards/memory-lancedb-pro.svg?v=fa5cedc3eb16" alt="memory-lancedb-pro" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/OpenMAIC"><img src="./assets/generated/cards/OpenMAIC.svg?v=d6586b5b328d" alt="OpenMAIC" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=92234e604396" alt="vpp-pppoeclient" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/metal-api-emulator"><img src="./assets/generated/cards/metal-api-emulator.svg?v=1e122fa8a7b2" alt="metal-api-emulator" /></a></td>
   </tr>
 </table>
 
 ## 🧰 技术 <sub>Stack</sub>
 
 <p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/C-VPP%20plugins-0D1B2A?labelColor=0D1B2A&style=flat&logo=c&logoColor=38BDF8" />
+    <img src="https://img.shields.io/badge/C-VPP%20plugins-F0F6FC?labelColor=F0F6FC&style=flat&logo=c&logoColor=0369A1" alt="C" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Rust-systems%20prototypes-0D1B2A?labelColor=0D1B2A&style=flat&logo=rust&logoColor=F59E0B" />
+    <img src="https://img.shields.io/badge/Rust-systems%20prototypes-F0F6FC?labelColor=F0F6FC&style=flat&logo=rust&logoColor=B45309" alt="Rust" />
+  </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Python-tooling-0D1B2A?labelColor=0D1B2A&style=flat&logo=python&logoColor=38BDF8" />
     <img src="https://img.shields.io/badge/Python-tooling-F0F6FC?labelColor=F0F6FC&style=flat&logo=python&logoColor=0369A1" alt="Python" />

@@ -500,7 +500,7 @@ def main() -> int:
     # Only fetch repos that are actually referenced in config (saves API calls)
     needed_repos: set[str] = {
         entry["repo"] for entry in config["projects"]["original"]
-    } | {entry["repo"] for entry in config["projects"]["forks"]}
+    } | {entry["repo"] for entry in config["projects"].get("forks", [])}
     repo_map: dict[str, dict[str, Any]] = {}
     for repo_name in needed_repos:
         repo = fetch_single_repo(username, repo_name, token=token)
@@ -521,9 +521,6 @@ def main() -> int:
         "ABOUT_ITEMS": format_about(config["about"]),
         "ORIGINAL_CARDS": render_project_section(
             config["projects"]["original"], repo_map, cards_dir, username, "🛠 ORIGINAL"
-        ),
-        "FORK_CARDS": render_project_section(
-            config["projects"]["forks"], repo_map, cards_dir, username, "🍴 FORK"
         ),
         "TOOLBOX_BADGES": format_toolbox_badges(config["toolbox"]),
         "SPONSOR_CARDS": render_sponsor_section(config["sponsor"]["methods"], sponsors_dir),

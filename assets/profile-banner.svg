@@ -1,6 +1,6 @@
 <svg width="1280" height="260" viewBox="0 0 1280 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Hi-Jiajun profile banner</title>
-  <desc id="desc">A minimal profile banner for Hi-Jiajun focused on automation, tools, and workflows.</desc>
+  <desc id="desc">A minimal profile banner for Hi-Jiajun focused on user-space dataplane work, GPU research, and AI workflows.</desc>
   <defs>
     <linearGradient id="bg" x1="36" y1="20" x2="1244" y2="240" gradientUnits="userSpaceOnUse">
       <stop stop-color="#08111E"/>
@@ -25,13 +25,13 @@
     HI-JIAJUN / SOLO BUILDER
   </text>
   <text x="72" y="126" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
-    Automation, tools,
+    User-space dataplane,
   </text>
   <text x="72" y="180" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
-    and AI workflows
+    GPU, and AI experiments
   </text>
   <text x="72" y="220" fill="#D4E7F5" font-family="Segoe UI, Arial, sans-serif" font-size="20">
-    Original projects, useful forks, and practical workflow experiments
+    VPP PPPoE plugins, Metal-on-Vulkan research, and AI workflows
   </text>
 
   <g transform="translate(930 66)">

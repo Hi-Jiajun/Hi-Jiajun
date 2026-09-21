@@ -35,8 +35,8 @@
 
 <table>
   <tr>
-    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=92234e604396" alt="vpp-pppoeclient" /></a></td>
-    <td><a href="https://github.com/Hi-Jiajun/metal-api-emulator"><img src="./assets/generated/cards/metal-api-emulator.svg?v=1e122fa8a7b2" alt="metal-api-emulator" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><img src="./assets/generated/cards/vpp-pppoeclient.svg?v=8009abc784bd" alt="vpp-pppoeclient" /></a></td>
+    <td><a href="https://github.com/Hi-Jiajun/metal-api-emulator"><img src="./assets/generated/cards/metal-api-emulator.svg?v=666c7ad5a6e4" alt="metal-api-emulator" /></a></td>
   </tr>
 </table>
 

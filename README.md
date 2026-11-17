@@ -152,8 +152,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=660ebbccb8e7" />
-  <img src="./assets/generated/stats/overview-light.svg?v=68acfd6b3717" alt="GitHub overview stats" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=6b82da79858a" />
+  <img src="./assets/generated/stats/overview-light.svg?v=baf2338db94b" alt="GitHub overview stats" />
 </picture>
 
 <br/>

@@ -1,48 +1,91 @@
-<svg width="1280" height="260" viewBox="0 0 1280 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1280" height="290" viewBox="0 0 1280 290" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Hi-Jiajun profile banner</title>
-  <desc id="desc">Public workbench banner for Hi-Jiajun (KiLiminal): systems, kernels, dataplane, GPU research, and AI tooling.</desc>
+  <desc id="desc">Public workbench banner for Hi-Jiajun (KiLiminal): systems, kernel drivers, userspace dataplane, GPU compute and AI tooling.</desc>
   <defs>
-    <linearGradient id="bg" x1="36" y1="20" x2="1244" y2="240" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#08111E"/>
-      <stop offset="0.58" stop-color="#102338"/>
-      <stop offset="1" stop-color="#184B54"/>
+    <linearGradient id="bg" x1="20" y1="10" x2="1260" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#060B14"/>
+      <stop offset="0.55" stop-color="#0D1B2A"/>
+      <stop offset="1" stop-color="#112A3E"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1030 74) rotate(160) scale(340 175)">
+    <radialGradient id="glow-a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 65) rotate(155) scale(380 210)">
       <stop stop-color="#38BDF8" stop-opacity="0.18"/>
       <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
     </radialGradient>
-    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" stroke="white" stroke-opacity="0.04"/>
+    <radialGradient id="glow-b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(180 250) rotate(25) scale(340 160)">
+      <stop stop-color="#2DD4BF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#94A3B8" fill-opacity="0.14"/>
     </pattern>
   </defs>
 
-  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#bg)"/>
-  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#glow)"/>
-  <rect x="8" y="8" width="1264" height="244" rx="28" fill="url(#grid)"/>
-  <rect x="8.5" y="8.5" width="1263" height="243" rx="27.5" stroke="white" stroke-opacity="0.12"/>
+  <rect x="6" y="6" width="1268" height="278" rx="24" fill="url(#bg)"/>
+  <rect x="6" y="6" width="1268" height="278" rx="24" fill="url(#glow-a)"/>
+  <rect x="6" y="6" width="1268" height="278" rx="24" fill="url(#glow-b)"/>
+  <rect x="6" y="6" width="1268" height="278" rx="24" fill="url(#dots)"/>
+  <rect x="6.75" y="6.75" width="1266.5" height="276.5" rx="23.25" stroke="#38BDF8" stroke-opacity="0.22" stroke-width="1.5"/>
 
-  <text x="68" y="66" fill="#8DD4FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.8">
-    HI-JIAJUN · KILIMINAL / PUBLIC WORKBENCH
-  </text>
-  <text x="68" y="124" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
-    Systems, kernels,
-  </text>
-  <text x="68" y="178" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700">
-    dataplane &amp; AI tooling
-  </text>
-  <text x="68" y="218" fill="#D4E7F5" font-family="Segoe UI, Arial, sans-serif" font-size="19">
-    VPP dataplane · macOS &amp; Linux drivers · Metal-on-Vulkan · Agent workflows
+  <!-- Status pill -->
+  <rect x="64" y="42" width="302" height="28" rx="14" fill="#0F2438" stroke="#1E4B68" stroke-width="1"/>
+  <circle cx="82" cy="56" r="4" fill="#2DD4BF"/>
+  <text x="95" y="60.5" fill="#93C5FD" font-family="Cascadia Code, Consolas, monospace" font-size="12" font-weight="600" letter-spacing="1.2">
+    PUBLIC WORKBENCH · MEISHAN, CN
   </text>
 
-  <g transform="translate(940 60)">
-    <rect width="268" height="140" rx="22" fill="rgba(255,255,255,0.04)"/>
-    <rect x="0.75" y="0.75" width="266.5" height="138.5" rx="21.25" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="24" y="24" width="68" height="8" rx="4" fill="#38BDF8"/>
-    <rect x="24" y="46" width="164" height="10" rx="5" fill="#38BDF8" fill-opacity="0.85"/>
-    <rect x="24" y="70" width="116" height="8" rx="4" fill="#2DD4BF"/>
-    <rect x="24" y="92" width="204" height="10" rx="5" fill="#2DD4BF" fill-opacity="0.75"/>
-    <text x="24" y="124" fill="#8DD4FF" font-family="Cascadia Code, Consolas, monospace" font-size="13" font-weight="600">
-      https://hi-jiajun.github.io
+  <!-- Main identity -->
+  <text x="64" y="130" fill="#F8FAFC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="50" font-weight="800" letter-spacing="-0.5">
+    Hi-Jiajun<tspan fill="#38BDF8" font-size="25" font-weight="600">  · KiLiminal</tspan>
+  </text>
+
+  <text x="64" y="176" fill="#E2E8F0" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="19.5" font-weight="600">
+    Systems, Kernel Drivers, Userspace Dataplane &amp; AI Tooling
+  </text>
+  <text x="64" y="210" fill="#94A3B8" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="15.5">
+    用户态网络数据面 · macOS / Android 内核驱动 · GPU 计算与自动化工作流
+  </text>
+
+  <text x="64" y="248" fill="#64748B" font-family="Cascadia Code, Consolas, monospace" font-size="12.5">
+    Solo builder · Real-hardware benchmarks &amp; transparent boundaries
+  </text>
+
+  <!-- Right 4-Layer Architecture Diagram Panel -->
+  <g transform="translate(806 34)">
+    <rect width="410" height="222" rx="18" fill="#0A1524" fill-opacity="0.92" stroke="#1E3A5F" stroke-width="1.2"/>
+    <text x="20" y="26" fill="#64748B" font-family="Cascadia Code, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="1.4">
+      WORKBENCH ARCHITECTURE STACK
+    </text>
+
+    <!-- L4 -->
+    <rect x="18" y="38" width="374" height="32" rx="8" fill="#112236" stroke="#F59E0B" stroke-opacity="0.35"/>
+    <circle cx="34" cy="54" r="4" fill="#F59E0B"/>
+    <text x="48" y="58" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="600">L4  AI &amp; MCP Gateways</text>
+    <text x="378" y="58" fill="#FBBF24" font-family="Cascadia Code, Consolas, monospace" font-size="11" text-anchor="end">tavily-router · magpie</text>
+
+    <!-- L3 -->
+    <rect x="18" y="77" width="374" height="32" rx="8" fill="#112236" stroke="#818CF8" stroke-opacity="0.35"/>
+    <circle cx="34" cy="93" r="4" fill="#818CF8"/>
+    <text x="48" y="97" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="600">L3  GPU Compute Runtime</text>
+    <text x="378" y="97" fill="#A5B4FC" font-family="Cascadia Code, Consolas, monospace" font-size="11" text-anchor="end">metal-api-emulator</text>
+
+    <!-- L2 -->
+    <rect x="18" y="116" width="374" height="32" rx="8" fill="#112236" stroke="#38BDF8" stroke-opacity="0.35"/>
+    <circle cx="34" cy="132" r="4" fill="#38BDF8"/>
+    <text x="48" y="136" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="600">L2  Userspace Dataplane</text>
+    <text x="378" y="136" fill="#7DD3FC" font-family="Cascadia Code, Consolas, monospace" font-size="11" text-anchor="end">VPP PPPoE · VectorOS</text>
+
+    <!-- L1 -->
+    <rect x="18" y="155" width="374" height="32" rx="8" fill="#112236" stroke="#2DD4BF" stroke-opacity="0.35"/>
+    <circle cx="34" cy="171" r="4" fill="#2DD4BF"/>
+    <text x="48" y="175" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="600">L1  Kernel, IOKit &amp; DTS</text>
+    <text x="378" y="175" fill="#5EEAD4" font-family="Cascadia Code, Consolas, monospace" font-size="11" text-anchor="end">MT792x · mlx4 · XRING O1</text>
+
+    <!-- Domain Bar -->
+    <text x="20" y="207" fill="#38BDF8" font-family="Cascadia Code, Consolas, monospace" font-size="12" font-weight="600">
+      &gt;_ https://hi-jiajun.github.io
+    </text>
+    <text x="390" y="207" fill="#64748B" font-family="Cascadia Code, Consolas, monospace" font-size="11" text-anchor="end">
+      RSS · ASTRO
     </text>
   </g>
 </svg>

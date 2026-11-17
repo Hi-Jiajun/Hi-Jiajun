@@ -3,7 +3,7 @@ name: Update Profile README
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 5 * * 1"  # weekly on Monday
+    - cron: "17 5 * * *"  # daily sync for repos & blog RSS
   push:
     branches:
       - main
@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/generated/cards/ assets/generated/sponsors/
+          git add README.md assets/generated/cards/ assets/generated/sponsors/ assets/generated/stats/
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

@@ -14,6 +14,10 @@
   <sub>{{ HEADER_INTRO_EN }}</sub>
 </p>
 
+<p>
+{{ QUICK_LINKS }}
+</p>
+
 </div>
 
 > {{ OWNERSHIP_NOTE_ZH }}  
@@ -26,6 +30,12 @@
 ## 🚀 原创项目 <sub>Original Projects</sub>
 
 {{ ORIGINAL_CARDS }}
+
+{{ MORE_PROJECTS }}
+
+## 📝 最新文章 <sub>Latest Blog Posts</sub>
+
+{{ BLOG_POSTS }}
 
 ## 🧰 技术 <sub>Stack</sub>
 

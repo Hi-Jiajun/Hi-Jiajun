@@ -63,7 +63,7 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=5627348f7028" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=cdd3b92d6208" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=5406aa8b558d" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=12908333ddb4" alt="GitHub overview stats" /></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=18233c67a96e" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=f449de38300c" alt="Most used languages" /></picture>
 </p>
 

@@ -39,7 +39,7 @@
 #### 📱 移动 SoC 与无线边界 <sub>Mobile SoC & Wireless Lab</sub>
 
 <p align="center">
-  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=1428c18819ee" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=b070fb86054a" alt="dijun-kernel-devicetree" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=def13e25f100" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=933f3c6c0e26" alt="dijun-kernel-devicetree" /></picture></a>
   <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=7912996fe53c" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=a66bd55d3edc" alt="mt6639-wifi7-dijun" /></picture></a>
 </p>
 
@@ -55,7 +55,7 @@
 
 - [`MT7922-Bluetooth-macOS`](https://github.com/Hi-Jiajun/MT7922-Bluetooth-macOS) (C++) — MT7922 / RZ616 macOS 蓝牙固件注入驱动与免 Xcode 构建链
 - [`AMD-Ryzen-9700X-macOS`](https://github.com/Hi-Jiajun/AMD-Ryzen-9700X-macOS) (C) — Ryzen 7 9700X (Zen 5) + B850 运行 macOS 15/26 实测适配笔记
-- [`magpie-agent-varin`](https://github.com/Hi-Jiajun/magpie-agent-varin) (JavaScript) — Magpie Agents 扩展工具
+- [`magpie-agent-varin`](https://github.com/Hi-Jiajun/magpie-agent-varin) (JavaScript, ⭐ 1) — Magpie Agents 扩展工具
 - [`nbmachina`](https://github.com/Hi-Jiajun/nbmachina) (JavaScript) — Minecraft 音符盒机器谱面编译器 + Fabric 无损音频 mod
 
 </details>
@@ -63,15 +63,15 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=5406aa8b558d" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=12908333ddb4" alt="GitHub overview stats" /></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=18233c67a96e" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=f449de38300c" alt="Most used languages" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=3268a82a7d23" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=496da172ccf1" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=bb36b153458d" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=f7681dde45a7" alt="Most used languages" /></picture>
 </p>
 
 ## ✍️ 最新文章 <sub>Latest Writing</sub>
 
-- `2026-11-18` **[把公开工作台搬进博客：为什么重做这个站点](https://hi-jiajun.github.io/posts/workbench-and-new-blog/)** — 放弃旧的 Hugo + PaperMod + CMS 模板，用 Astro 与纯 Markdown 重建一个写起来毫无摩擦的个人技术博客，并与 GitHub 个人主页自动联动。
-- `2026-11-17` **[小米 15S Pro (XRING O1) 内核设备树与外部模块 KMI/CRC 契约梳理](https://hi-jiajun.github.io/posts/xring-o1-dijun-kernel-abi-notes/)** — 记录 dijun-kernel-devicetree 仓库的设计脉络：四套严格分层的 DTS 基线、增量 .dtso 补丁，以及锁定 6.18.32-4k VERMAGIC 与 mo…
-- `2026-11-10` **[近期系统与数据面实验盘点：从 VPP 用户态 PPPoE 到驱动移植](https://hi-jiajun.github.io/posts/systems-workbench-overview/)** — 梳理近期几个主线仓库的真实推进状态与边界：vpp-pppoeclient、AirportMtk-macOS、ConnectX3-macOS、metal-api-emulator 与…
+- `2026-11-18` `AI` **[把公开工作台搬进博客：为什么重做这个站点](https://hi-jiajun.github.io/posts/workbench-and-new-blog/)** — 放弃旧的 Hugo + PaperMod + CMS 模板，用 Astro 与纯 Markdown 重建一个写起来毫无摩擦的个人技术博客，并与 GitHub 个人主页自动联动。
+- `2026-11-17` `AI` **[小米 15S Pro (XRING O1) 内核设备树与外部模块 KMI/CRC 契约梳理](https://hi-jiajun.github.io/posts/xring-o1-dijun-kernel-abi-notes/)** — 记录 dijun-kernel-devicetree 仓库的设计脉络：四套严格分层的 DTS 基线、增量 .dtso 补丁，以及锁定 6.18.32-4k VERMAGIC 与 mo…
+- `2026-11-10` `AI` **[近期系统与数据面实验盘点：从 VPP 用户态 PPPoE 到驱动移植](https://hi-jiajun.github.io/posts/systems-workbench-overview/)** — 梳理近期几个主线仓库的真实推进状态与边界：vpp-pppoeclient、AirportMtk-macOS、ConnectX3-macOS、metal-api-emulator 与…
 
 → [进入博客浏览全部文章、项目矩阵与站内搜索 (hi-jiajun.github.io)](https://hi-jiajun.github.io)
 

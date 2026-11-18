@@ -2,6 +2,8 @@ name: Update Profile README
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [blog-published]
   schedule:
     - cron: "17 5 * * *"  # daily sync for repos & blog RSS
   push:

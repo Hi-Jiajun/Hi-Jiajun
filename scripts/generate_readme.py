@@ -671,8 +671,10 @@ def fetch_blog_posts(
         link = (item.findtext("link") or "").strip()
         date_str = parse_rss_date(item.findtext("pubDate"))
         desc = truncate(clean_rss_text(item.findtext("description")), 92)
+        categories = [clean_rss_text(c.text).lower() for c in item.findall("category") if c.text]
+        source = "ai" if "ai" in categories else ("manual" if "manual" in categories else "")
         if title and link:
-            posts.append({"title": title, "link": link, "date": date_str, "desc": desc})
+            posts.append({"title": title, "link": link, "date": date_str, "desc": desc, "source": source})
 
     if posts:
         return posts
@@ -700,8 +702,10 @@ def format_blog_section(posts: list[dict[str, str]], blog_url: str | None) -> st
     if posts:
         for post in posts:
             safe_title = post["title"].replace("[", "\\[").replace("]", "\\]")
+            src = post.get("source")
+            src_tag = " `AI`" if src == "ai" else (" `手写`" if src == "manual" else "")
             desc_part = f" — {post['desc']}" if post["desc"] else ""
-            lines.append(f"- `{post['date']}` **[{safe_title}]({post['link']})**{desc_part}")
+            lines.append(f"- `{post['date']}`{src_tag} **[{safe_title}]({post['link']})**{desc_part}")
     if blog_url:
         host = parse.urlparse(blog_url).netloc or blog_url
         if lines:

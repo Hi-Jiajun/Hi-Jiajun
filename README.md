@@ -39,8 +39,8 @@
 #### 📱 移动 SoC 与无线边界 <sub>Mobile SoC & Wireless Lab</sub>
 
 <p align="center">
-  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=def13e25f100" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=933f3c6c0e26" alt="dijun-kernel-devicetree" /></picture></a>
-  <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=7912996fe53c" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=a66bd55d3edc" alt="mt6639-wifi7-dijun" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=3da68d4300a5" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=d4337df486ed" alt="dijun-kernel-devicetree" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=700ffdc2dfcf" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=ba57c1700464" alt="mt6639-wifi7-dijun" /></picture></a>
 </p>
 
 #### 🧪 GPU 计算与 AI 网关 <sub>GPU Compute & AI Tooling</sub>
@@ -63,7 +63,7 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=909963bc8d2c" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=b2b590972129" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=e87fe61e3b68" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=cc4b4a4442bf" alt="GitHub overview stats" /></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=bb36b153458d" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=f7681dde45a7" alt="Most used languages" /></picture>
 </p>
 

@@ -22,7 +22,7 @@
   <rect x="156" y="114" width="118" height="46" rx="10" fill="#112236" stroke="#1E3A5F" stroke-opacity="0.65" stroke-width="0.8" />
   <circle cx="168" cy="129" r="3" fill="#38BDF8" />
   <text x="176" y="132.5" fill="#94A3B8" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="10.5">Total Stars</text>
-  <text x="168" y="152" fill="#F8FAFC" font-family="Cascadia Code, Consolas, monospace" font-size="16" font-weight="700">14</text>
+  <text x="168" y="152" fill="#F8FAFC" font-family="Cascadia Code, Consolas, monospace" font-size="16" font-weight="700">15</text>
   <rect x="292" y="114" width="118" height="46" rx="10" fill="#112236" stroke="#1E3A5F" stroke-opacity="0.65" stroke-width="0.8" />
   <circle cx="304" cy="129" r="3" fill="#2DD4BF" />
   <text x="312" y="132.5" fill="#94A3B8" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="10.5">Contributed To</text>

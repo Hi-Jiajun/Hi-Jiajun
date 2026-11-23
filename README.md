@@ -40,7 +40,7 @@
 
 <p align="center">
   <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=3da68d4300a5" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=d4337df486ed" alt="dijun-kernel-devicetree" /></picture></a>
-  <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=700ffdc2dfcf" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=ba57c1700464" alt="mt6639-wifi7-dijun" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=abc2fcdbfa95" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=514ac119c9d5" alt="mt6639-wifi7-dijun" /></picture></a>
 </p>
 
 #### 🧪 GPU 计算与 AI 网关 <sub>GPU Compute & AI Tooling</sub>
@@ -63,8 +63,8 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=4c1590706541" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=6e563905342e" alt="GitHub overview stats" /></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=e445af034e0d" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=fb8db6cd35e1" alt="Most used languages" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=31955e8d70e8" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=ff8a2f163d18" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=5cef6e3ff6d3" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=ee011b4742c2" alt="Most used languages" /></picture>
 </p>
 
 ## ✍️ 最新文章 <sub>Latest Writing</sub>

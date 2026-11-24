@@ -25,7 +25,7 @@
 #### 🌐 网络数据面与路由 <sub>Dataplane & Networking</sub>
 
 <p align="center">
-  <a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/vpp-pppoeclient-dark.svg?v=52fca023fe10" /><img width="430" src="./assets/generated/cards/vpp-pppoeclient-light.svg?v=01ffbbd58d4b" alt="vpp-pppoeclient" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/vpp-pppoeclient"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/vpp-pppoeclient-dark.svg?v=5144a165c169" /><img width="430" src="./assets/generated/cards/vpp-pppoeclient-light.svg?v=9517e145db06" alt="vpp-pppoeclient" /></picture></a>
   <a href="https://github.com/Hi-Jiajun/VectorOS"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/VectorOS-dark.svg?v=84680e0cbf72" /><img width="430" src="./assets/generated/cards/VectorOS-light.svg?v=4b33a2e41b6b" alt="VectorOS" /></picture></a>
 </p>
 
@@ -63,8 +63,8 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=31955e8d70e8" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=ff8a2f163d18" alt="GitHub overview stats" /></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=5cef6e3ff6d3" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=ee011b4742c2" alt="Most used languages" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=f5d04de2a265" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=3c1bfbdcae73" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=bf2d8bba0a2e" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=e79e67296458" alt="Most used languages" /></picture>
 </p>
 
 ## ✍️ 最新文章 <sub>Latest Writing</sub>

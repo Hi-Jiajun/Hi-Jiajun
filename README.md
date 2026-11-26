@@ -63,8 +63,8 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=833be03175cd" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=1a8e1800132d" alt="GitHub overview stats" /></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=bf2d8bba0a2e" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=e79e67296458" alt="Most used languages" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=fb885b1bb711" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=f4d66cf0840c" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=a12a0351ecae" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=3c6a6a1d1819" alt="Most used languages" /></picture>
 </p>
 
 ## ✍️ 最新文章 <sub>Latest Writing</sub>

@@ -39,7 +39,7 @@
 #### 📱 移动 SoC 与无线边界 <sub>Mobile SoC & Wireless Lab</sub>
 
 <p align="center">
-  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=3da68d4300a5" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=d4337df486ed" alt="dijun-kernel-devicetree" /></picture></a>
+  <a href="https://github.com/Hi-Jiajun/dijun-kernel-devicetree"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/dijun-kernel-devicetree-dark.svg?v=6c8f66e110cc" /><img width="430" src="./assets/generated/cards/dijun-kernel-devicetree-light.svg?v=8ad572c11773" alt="dijun-kernel-devicetree" /></picture></a>
   <a href="https://github.com/Hi-Jiajun/mt6639-wifi7-dijun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/cards/mt6639-wifi7-dijun-dark.svg?v=abc2fcdbfa95" /><img width="430" src="./assets/generated/cards/mt6639-wifi7-dijun-light.svg?v=514ac119c9d5" alt="mt6639-wifi7-dijun" /></picture></a>
 </p>
 
@@ -63,8 +63,8 @@
 ## 📊 研发遥测 <sub>Telemetry</sub>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=db636e1f38b6" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=0988d3be6f0c" alt="GitHub overview stats" /></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=30957847ff05" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=05d4364d1d32" alt="Most used languages" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/overview-dark.svg?v=50da1d41927c" /><img width="430" src="./assets/generated/stats/overview-light.svg?v=27a0e38772a3" alt="GitHub overview stats" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/generated/stats/languages-dark.svg?v=7622ba7d55e8" /><img width="430" src="./assets/generated/stats/languages-light.svg?v=b00e80cdcdd1" alt="Most used languages" /></picture>
 </p>
 
 ## ✍️ 最新文章 <sub>Latest Writing</sub>

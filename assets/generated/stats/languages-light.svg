@@ -11,10 +11,10 @@
   <rect x="20" y="58" width="390" height="10" rx="5" fill="#E2E8F0" />
   <g clip-path="url(#lang-bar-clip-light)">
     <rect x="20.00" y="58" width="123.63" height="10" fill="#f34b7d" />
-    <rect x="143.63" y="58" width="76.05" height="10" fill="#3572A5" />
-    <rect x="219.68" y="58" width="57.72" height="10" fill="#dea584" />
-    <rect x="277.40" y="58" width="51.09" height="10" fill="#475569" />
-    <rect x="328.49" y="58" width="48.36" height="10" fill="#CA8A04" />
+    <rect x="143.63" y="58" width="75.66" height="10" fill="#3572A5" />
+    <rect x="219.29" y="58" width="57.72" height="10" fill="#dea584" />
+    <rect x="277.01" y="58" width="50.70" height="10" fill="#475569" />
+    <rect x="327.71" y="58" width="49.14" height="10" fill="#CA8A04" />
     <rect x="376.85" y="58" width="33.15" height="10" fill="#16A34A" />
   </g>
   <circle cx="25" cy="92" r="4.5" fill="#f34b7d" />
@@ -22,16 +22,16 @@
   <text x="206" y="96" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">31.7%</text>
   <circle cx="229" cy="92" r="4.5" fill="#3572A5" />
   <text x="240" y="96" fill="#0F172A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12.5" font-weight="600">Python</text>
-  <text x="410" y="96" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">19.5%</text>
+  <text x="410" y="96" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">19.4%</text>
   <circle cx="25" cy="118" r="4.5" fill="#dea584" />
   <text x="36" y="122" fill="#0F172A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12.5" font-weight="600">Rust</text>
   <text x="206" y="122" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">14.8%</text>
   <circle cx="229" cy="118" r="4.5" fill="#475569" />
   <text x="240" y="122" fill="#0F172A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12.5" font-weight="600">C</text>
-  <text x="410" y="122" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">13.1%</text>
+  <text x="410" y="122" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">13.0%</text>
   <circle cx="25" cy="144" r="4.5" fill="#CA8A04" />
   <text x="36" y="148" fill="#0F172A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12.5" font-weight="600">JavaScript</text>
-  <text x="206" y="148" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">12.4%</text>
+  <text x="206" y="148" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">12.6%</text>
   <circle cx="229" cy="144" r="4.5" fill="#16A34A" />
   <text x="240" y="148" fill="#0F172A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12.5" font-weight="600">Shell</text>
   <text x="410" y="148" fill="#475569" font-family="Cascadia Code, Consolas, monospace" font-size="11.5" text-anchor="end">8.5%</text>
